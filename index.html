@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#060908">
+
 <title>ADAMS OPTION</title>
 
 <style>
@@ -145,9 +146,7 @@ input{
   border-color:var(--gold);
 }
 
-.signalBox{
-  text-align:center;
-}
+.signalBox{text-align:center}
 
 .signal{
   font-size:37px;
@@ -215,9 +214,7 @@ input{
   margin-top:10px;
 }
 
-.analyse{
-  background:var(--gold);
-}
+.analyse{background:var(--gold)}
 
 .autoOn{
   background:var(--green);
@@ -235,8 +232,7 @@ input{
   border:1px solid #64232e;
 }
 
-.tradeTop,
-.row{
+.tradeTop,.row{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -269,8 +265,7 @@ input{
   color:var(--muted);
 }
 
-.note,
-.miniStatus{
+.note,.miniStatus{
   font-size:11px;
   color:var(--muted);
   line-height:1.5;
@@ -305,17 +300,13 @@ input{
   padding:8px;
 }
 
-.nav.active{
-  color:var(--gold);
-}
+.nav.active{color:var(--gold)}
 
 .screen{display:none}
 .screen.active{display:block}
 
 @media(min-width:600px){
-  .assetButtons{
-    grid-template-columns:repeat(4,1fr);
-  }
+  .assetButtons{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
@@ -323,9 +314,9 @@ input{
 <body>
 
 <header>
-  <div class="logo">ADAMS OPTION</div>
-  <div class="subtitle">FOREX SIGNAL ENGINE • AUTO DEMO</div>
-  <div class="status">DEMO MODE</div>
+<div class="logo">ADAMS OPTION</div>
+<div class="subtitle">FOREX SIGNAL ENGINE • AUTO DEMO</div>
+<div class="status" id="serverBadge">DEMO MODE</div>
 </header>
 
 <div class="container">
@@ -351,10 +342,13 @@ input{
 <button class="tf" data-tf="5">M5</button>
 <button class="tf" data-tf="15">M15</button>
 </div>
+
 </div>
 
 <div class="card signalBox">
+
 <div class="title">CURRENT SIGNAL</div>
+
 <div id="signal" class="signal wait">WAIT</div>
 
 <div class="confidence">
@@ -365,15 +359,22 @@ Confidence: <strong id="confidence">0%</strong>
 <div id="barfill" class="barfill"></div>
 </div>
 
-<button id="analyseBtn" class="btn analyse">ANALYSE MARKET</button>
+<button id="analyseBtn" class="btn analyse">
+ANALYSE MARKET
+</button>
 
-<div id="engineStatus" class="miniStatus">Ready</div>
+<div id="engineStatus" class="miniStatus">
+Connecting to server…
+</div>
+
 </div>
 
 <div class="card">
+
 <div class="title">AUTO DEMO SETTINGS</div>
 
 <div class="grid">
+
 <div>
 <label>Demo Balance</label>
 <input type="number" id="balanceInput" value="1000">
@@ -393,28 +394,61 @@ Confidence: <strong id="confidence">0%</strong>
 <label>Max Consecutive Losses</label>
 <input type="number" id="maxLosses" value="2">
 </div>
+
 </div>
 
-<button id="autoBtn" class="btn autoOff">AUTO DEMO: OFF</button>
+<button id="autoBtn" class="btn autoOff">
+AUTO DEMO: OFF
+</button>
+
 </div>
 
 <div class="card">
+
 <div class="title">ACCOUNT</div>
 
 <div class="stats">
-<div class="stat"><b id="balance">£1000.00</b><span>BALANCE</span></div>
-<div class="stat"><b id="wins">0</b><span>WINS</span></div>
-<div class="stat"><b id="losses">0</b><span>LOSSES</span></div>
+
+<div class="stat">
+<b id="balance">£1000.00</b>
+<span>BALANCE</span>
+</div>
+
+<div class="stat">
+<b id="wins">0</b>
+<span>WINS</span>
+</div>
+
+<div class="stat">
+<b id="losses">0</b>
+<span>LOSSES</span>
+</div>
+
 </div>
 
 <div class="stats">
-<div class="stat"><b id="winrate">0%</b><span>WIN RATE</span></div>
-<div class="stat"><b id="lossStreak">0</b><span>LOSS STREAK</span></div>
-<div class="stat"><b id="tradesCount">0</b><span>TRADES</span></div>
+
+<div class="stat">
+<b id="winrate">0%</b>
+<span>WIN RATE</span>
 </div>
+
+<div class="stat">
+<b id="lossStreak">0</b>
+<span>LOSS STREAK</span>
+</div>
+
+<div class="stat">
+<b id="tradesCount">0</b>
+<span>TRADES</span>
+</div>
+
+</div>
+
 </div>
 
 <div id="openTradeCard" class="card" style="display:none">
+
 <div class="title">OPEN DEMO TRADE</div>
 
 <div class="tradeTop">
@@ -422,54 +456,107 @@ Confidence: <strong id="confidence">0%</strong>
 <span id="openDirection" class="badge call">CALL</span>
 </div>
 
-<div class="row"><span>Amount</span><strong id="openAmount">£0</strong></div>
-<div class="row"><span>Expiry</span><strong id="openExpiry">1 minute</strong></div>
-<div class="row"><span>Confidence</span><strong id="openConfidence">0%</strong></div>
-<div class="row"><span>Entry price</span><strong id="openEntry">--</strong></div>
-<div class="row"><span>Demo price</span><strong id="openPrice">--</strong></div>
-<div class="row"><span>Time remaining</span><strong id="countdown">--</strong></div>
+<div class="row">
+<span>Amount</span>
+<strong id="openAmount">£0</strong>
+</div>
+
+<div class="row">
+<span>Expiry</span>
+<strong id="openExpiry">1 minute</strong>
+</div>
+
+<div class="row">
+<span>Confidence</span>
+<strong id="openConfidence">0%</strong>
+</div>
+
+<div class="row">
+<span>Entry price</span>
+<strong id="openEntry">--</strong>
+</div>
+
+<div class="row">
+<span>Demo price</span>
+<strong id="openPrice">--</strong>
+</div>
+
+<div class="row">
+<span>Time remaining</span>
+<strong id="countdown">--</strong>
+</div>
+
 </div>
 
 </section>
 
 <section id="historyScreen" class="screen">
+
 <div class="card">
+
 <div class="title">TRADE HISTORY</div>
+
 <div id="history"></div>
-<button id="clearHistory" class="btn danger">CLEAR HISTORY</button>
+
+<button id="clearHistory" class="btn danger">
+CLEAR HISTORY
+</button>
+
 </div>
+
 </section>
 
 <section id="settingsScreen" class="screen">
+
 <div class="card">
+
 <div class="title">SAFETY RULES</div>
 
 <p class="note">
-AUTO DEMO scans all Forex pairs automatically and opens simulated positions only when the best signal reaches your selected minimum confidence.
+AUTO DEMO scans Forex pairs and opens simulated positions only when the selected confidence requirement is reached.
 </p>
 
 <br>
 
 <p class="note">
-This version uses simulated signals and simulated prices. It does not place real-money trades.
+DEMO ONLY. This version does not place real-money trades.
 </p>
+
 </div>
+
 </section>
 
 </div>
 
 <div class="bottom">
+
 <div class="bottomInner">
-<button class="nav active" data-screen="tradeScreen">TRADE</button>
-<button class="nav" data-screen="historyScreen">HISTORY</button>
-<button class="nav" data-screen="settingsScreen">SETTINGS</button>
+
+<button class="nav active" data-screen="tradeScreen">
+TRADE
+</button>
+
+<button class="nav" data-screen="historyScreen">
+HISTORY
+</button>
+
+<button class="nav" data-screen="settingsScreen">
+SETTINGS
+</button>
+
 </div>
+
 </div>
 
 <script>
 
 const STORAGE_KEY="adamsOptionStateV3";
 const HISTORY_KEY="adamsOptionHistoryV3";
+
+/* RENDER SERVER */
+
+const SERVER_URL=
+"https://adams-option-server.onrender.com";
 
 const PAIRS=[
 "EUR/USD",
@@ -484,30 +571,131 @@ const PAIRS=[
 
 let selectedPair="EUR/USD";
 let timeframe=1;
+
 let currentSignal="WAIT";
 let currentConfidence=0;
+
 let autoDemo=false;
 let openTrade=null;
+
 let autoTimer=null;
 let expiryTimer=null;
+
 let balance=1000;
 let wins=0;
 let losses=0;
 let consecutiveLosses=0;
 
-let history=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");
+let history=
+JSON.parse(
+localStorage.getItem(HISTORY_KEY)||"[]"
+);
 
-const signalEl=document.getElementById("signal");
-const confidenceEl=document.getElementById("confidence");
-const barfill=document.getElementById("barfill");
-const engineStatus=document.getElementById("engineStatus");
+const signalEl=
+document.getElementById("signal");
+
+const confidenceEl=
+document.getElementById("confidence");
+
+const barfill=
+document.getElementById("barfill");
+
+const engineStatus=
+document.getElementById("engineStatus");
+
+const serverBadge=
+document.getElementById("serverBadge");
+
+
+/* =========================
+   SERVER CONNECTION
+========================= */
+
+async function checkServer(){
+
+try{
+
+engineStatus.textContent=
+"Connecting to ADAMS server…";
+
+const response=
+await fetch(SERVER_URL,{
+method:"GET",
+cache:"no-store"
+});
+
+if(!response.ok){
+throw new Error(
+"HTTP "+response.status
+);
+}
+
+const data=
+await response.json();
+
+if(data.status==="online"){
+
+engineStatus.textContent=
+"SERVER ONLINE • "+
+(data.mode||"DEMO");
+
+serverBadge.textContent=
+"SERVER ONLINE";
+
+serverBadge.style.borderColor=
+"var(--green)";
+
+serverBadge.style.color=
+"var(--green)";
+
+return true;
+
+}
+
+engineStatus.textContent=
+"SERVER CONNECTED";
+
+return true;
+
+}catch(error){
+
+console.error(
+"ADAMS SERVER ERROR:",
+error
+);
+
+engineStatus.textContent=
+"SERVER OFFLINE • LOCAL DEMO";
+
+serverBadge.textContent=
+"SERVER OFFLINE";
+
+serverBadge.style.borderColor=
+"var(--red)";
+
+serverBadge.style.color=
+"var(--red)";
+
+return false;
+
+}
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
 
 function random(min,max){
 return Math.random()*(max-min)+min;
 }
 
 function clamp(v,min,max){
-return Math.max(min,Math.min(max,v));
+return Math.max(
+min,
+Math.min(max,v)
+);
 }
 
 function pairDecimals(pair){
@@ -515,6 +703,7 @@ return pair.includes("JPY")?3:5;
 }
 
 function basePrice(pair){
+
 const map={
 "EUR/USD":1.10500,
 "GBP/USD":1.28500,
@@ -525,36 +714,89 @@ const map={
 "USD/CHF":0.80500,
 "NZD/USD":0.61500
 };
+
 return map[pair]||1;
+
 }
 
 function formatPrice(pair,value){
-return Number(value).toFixed(pairDecimals(pair));
+
+return Number(value)
+.toFixed(pairDecimals(pair));
+
 }
 
+
+/* =========================
+   STORAGE
+========================= */
+
 function saveState(){
-localStorage.setItem(STORAGE_KEY,JSON.stringify({
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify({
+
 balance,
 wins,
 losses,
 consecutiveLosses,
 selectedPair,
 timeframe
-}));
+
+})
+);
+
 }
 
 function loadState(){
+
 try{
-const s=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");
+
+const s=
+JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+||"null"
+);
+
 if(!s)return;
-if(Number.isFinite(s.balance))balance=s.balance;
-if(Number.isFinite(s.wins))wins=s.wins;
-if(Number.isFinite(s.losses))losses=s.losses;
-if(Number.isFinite(s.consecutiveLosses))consecutiveLosses=s.consecutiveLosses;
-if(s.selectedPair)selectedPair=s.selectedPair;
-if([1,5,15].includes(Number(s.timeframe)))timeframe=Number(s.timeframe);
-}catch(e){}
+
+if(Number.isFinite(s.balance))
+balance=s.balance;
+
+if(Number.isFinite(s.wins))
+wins=s.wins;
+
+if(Number.isFinite(s.losses))
+losses=s.losses;
+
+if(Number.isFinite(s.consecutiveLosses))
+consecutiveLosses=
+s.consecutiveLosses;
+
+if(s.selectedPair)
+selectedPair=s.selectedPair;
+
+if(
+[1,5,15].includes(
+Number(s.timeframe)
+)
+)
+timeframe=
+Number(s.timeframe);
+
+}catch(e){
+
+console.error(e);
+
 }
+
+}
+
+
+/* =========================
+   DEMO SIGNAL ENGINE
+========================= */
 
 function analysePair(pair){
 
@@ -571,21 +813,34 @@ trend*.38+
 
 let direction="WAIT";
 
-if(score>20)direction="CALL";
-else if(score<-20)direction="PUT";
+if(score>20)
+direction="CALL";
+
+else if(score<-20)
+direction="PUT";
 
 let confidence;
 
 if(direction==="WAIT"){
-confidence=Math.round(random(50,74));
+
+confidence=
+Math.round(
+random(50,74)
+);
+
 }else{
-confidence=Math.round(
+
+confidence=
+Math.round(
 clamp(
-60+Math.abs(score)*.38+random(-5,7),
+60+
+Math.abs(score)*.38+
+random(-5,7),
 55,
 96
 )
 );
+
 }
 
 return{
@@ -594,43 +849,76 @@ direction,
 confidence,
 score
 };
+
 }
+
+
+/* =========================
+   MANUAL ANALYSIS
+========================= */
 
 function analyseMarket(){
 
 if(openTrade)return;
 
-const result=analysePair(selectedPair);
+const result=
+analysePair(selectedPair);
 
-currentSignal=result.direction;
-currentConfidence=result.confidence;
+currentSignal=
+result.direction;
+
+currentConfidence=
+result.confidence;
 
 renderSignal();
 
 engineStatus.textContent=
-selectedPair+" analysed manually";
+selectedPair+
+" analysed • LOCAL DEMO";
+
 }
+
+
+/* =========================
+   AUTO SCAN
+========================= */
 
 function autoScanMarket(){
 
-if(!autoDemo||openTrade)return;
+if(!autoDemo||openTrade)
+return;
 
 const maxLoss=
-Number(document.getElementById("maxLosses").value)||2;
+Number(
+document.getElementById(
+"maxLosses"
+).value
+)||2;
 
-if(consecutiveLosses>=maxLoss){
-stopAuto("Stopped: loss limit reached.");
+if(
+consecutiveLosses>=maxLoss
+){
+
+stopAuto(
+"Stopped: loss limit reached."
+);
+
 return;
+
 }
 
 engineStatus.textContent=
 "AUTO scanning all 8 Forex pairs…";
 
 const results=
-PAIRS.map(pair=>analysePair(pair));
+PAIRS.map(
+pair=>analysePair(pair)
+);
 
 const valid=
-results.filter(r=>r.direction!=="WAIT");
+results.filter(
+r=>r.direction!=="WAIT"
+);
 
 if(!valid.length){
 
@@ -640,13 +928,18 @@ currentConfidence=0;
 renderSignal();
 
 engineStatus.textContent=
-"No valid signal. Scan again in 5 seconds…";
+"No valid signal • scan again in 5 seconds…";
 
 scheduleNextScan();
+
 return;
+
 }
 
-valid.sort((a,b)=>b.confidence-a.confidence);
+valid.sort(
+(a,b)=>
+b.confidence-a.confidence
+);
 
 const best=valid[0];
 
@@ -658,66 +951,113 @@ highlightSelectedPair();
 renderSignal();
 
 const min=
-Number(document.getElementById("minConfidence").value)||80;
+Number(
+document.getElementById(
+"minConfidence"
+).value
+)||80;
 
-if(best.confidence>=min){
+if(
+best.confidence>=min
+){
 
 engineStatus.textContent=
-"BEST "+best.pair+" "+best.direction+" "+best.confidence+"%";
+"BEST "+
+best.pair+" "+
+best.direction+" "+
+best.confidence+"%";
 
 openDemoTrade();
 
 }else{
 
 engineStatus.textContent=
-"Best "+best.pair+" "+best.direction+" "+best.confidence+
-"% • Need "+min+"%";
+"Best "+
+best.pair+" "+
+best.direction+" "+
+best.confidence+
+"% • Need "+
+min+"%";
 
 scheduleNextScan();
+
 }
+
 }
+
+
+/* =========================
+   UI
+========================= */
 
 function highlightSelectedPair(){
 
-document.querySelectorAll(".asset").forEach(btn=>{
+document
+.querySelectorAll(".asset")
+.forEach(btn=>{
+
 btn.classList.toggle(
 "active",
-btn.dataset.pair===selectedPair
+btn.dataset.pair===
+selectedPair
 );
+
 });
+
 }
 
 function renderSignal(){
 
-signalEl.textContent=currentSignal;
+signalEl.textContent=
+currentSignal;
 
 signalEl.className=
 "signal "+
 (
-currentSignal==="CALL"?"call":
-currentSignal==="PUT"?"put":"wait"
+currentSignal==="CALL"
+?"call":
+currentSignal==="PUT"
+?"put":
+"wait"
 );
 
-confidenceEl.textContent=currentConfidence+"%";
-barfill.style.width=currentConfidence+"%";
+confidenceEl.textContent=
+currentConfidence+"%";
+
+barfill.style.width=
+currentConfidence+"%";
 
 barfill.style.background=
-currentSignal==="PUT"?
-"var(--red)":
-currentSignal==="WAIT"?
-"var(--gold)":
+currentSignal==="PUT"
+?"var(--red)":
+currentSignal==="WAIT"
+?"var(--gold)":
 "var(--green)";
+
 }
+
+
+/* =========================
+   TRADE
+========================= */
 
 function getTradeAmount(){
 
 const risk=
-Number(document.getElementById("riskInput").value)||1;
+Number(
+document.getElementById(
+"riskInput"
+).value
+)||1;
 
 return Math.min(
 balance,
-Math.max(.5,balance*risk/100)
+Math.max(
+.5,
+balance*risk/100
+)
 );
+
 }
 
 function openDemoTrade(){
@@ -726,21 +1066,36 @@ clearTimeout(autoTimer);
 
 if(openTrade)return;
 
-const amount=getTradeAmount();
+const amount=
+getTradeAmount();
 
-if(amount<=0||balance<=0){
-stopAuto("Demo balance empty.");
+if(
+amount<=0||
+balance<=0
+){
+
+stopAuto(
+"Demo balance empty."
+);
+
 return;
+
 }
 
 const entry=
 basePrice(selectedPair)+
 random(-0.0015,0.0015)*
-(selectedPair.includes("JPY")?100:1);
+(
+selectedPair.includes("JPY")
+?100
+:1
+);
 
-const expirySeconds=timeframe*60;
+const expirySeconds=
+timeframe*60;
 
 openTrade={
+
 pair:selectedPair,
 direction:currentSignal,
 confidence:currentConfidence,
@@ -748,95 +1103,165 @@ amount,
 remaining:expirySeconds,
 entry,
 price:entry
+
 };
 
 renderOpenTrade();
 startExpiry();
+
 }
 
 function renderOpenTrade(){
 
-const card=document.getElementById("openTradeCard");
+const card=
+document.getElementById(
+"openTradeCard"
+);
 
 if(!openTrade){
+
 card.style.display="none";
 return;
+
 }
 
 card.style.display="block";
 
-document.getElementById("openPair").textContent=openTrade.pair;
+document.getElementById(
+"openPair"
+).textContent=
+openTrade.pair;
 
-const dir=document.getElementById("openDirection");
-dir.textContent=openTrade.direction;
-dir.className="badge "+(
-openTrade.direction==="CALL"?"call":"put"
+const dir=
+document.getElementById(
+"openDirection"
 );
 
-document.getElementById("openAmount").textContent=
-"£"+openTrade.amount.toFixed(2);
+dir.textContent=
+openTrade.direction;
 
-document.getElementById("openExpiry").textContent=
-timeframe+(timeframe===1?" minute":" minutes");
+dir.className=
+"badge "+
+(
+openTrade.direction==="CALL"
+?"call"
+:"put"
+);
 
-document.getElementById("openConfidence").textContent=
+document.getElementById(
+"openAmount"
+).textContent=
+"£"+
+openTrade.amount.toFixed(2);
+
+document.getElementById(
+"openExpiry"
+).textContent=
+timeframe+
+(timeframe===1
+?" minute"
+:" minutes");
+
+document.getElementById(
+"openConfidence"
+).textContent=
 openTrade.confidence+"%";
 
-document.getElementById("openEntry").textContent=
-formatPrice(openTrade.pair,openTrade.entry);
+document.getElementById(
+"openEntry"
+).textContent=
+formatPrice(
+openTrade.pair,
+openTrade.entry
+);
 
-document.getElementById("openPrice").textContent=
-formatPrice(openTrade.pair,openTrade.price);
+document.getElementById(
+"openPrice"
+).textContent=
+formatPrice(
+openTrade.pair,
+openTrade.price
+);
 
-document.getElementById("countdown").textContent=
-formatTime(openTrade.remaining);
+document.getElementById(
+"countdown"
+).textContent=
+formatTime(
+openTrade.remaining
+);
+
 }
 
 function startExpiry(){
 
-clearInterval(expiryTimer);
+clearInterval(
+expiryTimer
+);
 
-expiryTimer=setInterval(()=>{
+expiryTimer=
+setInterval(()=>{
 
 if(!openTrade){
-clearInterval(expiryTimer);
+
+clearInterval(
+expiryTimer
+);
+
 return;
+
 }
 
 const scale=
-openTrade.pair.includes("JPY")?
-.012:
-.00012;
+openTrade.pair.includes("JPY")
+?.012
+:.00012;
 
 const bias=
 (openTrade.confidence-50)/50*
 scale*
-(openTrade.direction==="CALL"?.16:-.16);
+(
+openTrade.direction==="CALL"
+?.16
+:-.16
+);
 
-openTrade.price+=random(-scale,scale)+bias;
+openTrade.price+=
+random(-scale,scale)+bias;
 
 openTrade.remaining--;
 
 renderOpenTrade();
 
-if(openTrade.remaining<=0){
+if(
+openTrade.remaining<=0
+){
 
-clearInterval(expiryTimer);
+clearInterval(
+expiryTimer
+);
+
 closeDemoTrade();
 
 }
 
 },1000);
+
 }
 
 function formatTime(seconds){
 
-const m=Math.floor(seconds/60);
-const s=seconds%60;
+const m=
+Math.floor(seconds/60);
 
-return String(m).padStart(2,"0")+
-":"+
-String(s).padStart(2,"0");
+const s=
+seconds%60;
+
+return String(m)
+.padStart(2,"0")
++":"+
+String(s)
+.padStart(2,"0");
+
 }
 
 function closeDemoTrade(){
@@ -847,15 +1272,31 @@ const trade=openTrade;
 
 let result="DRAW";
 
-if(trade.direction==="CALL"){
+if(
+trade.direction==="CALL"
+){
 
-if(trade.price>trade.entry)result="WIN";
-else if(trade.price<trade.entry)result="LOSS";
+if(
+trade.price>trade.entry
+)
+result="WIN";
+
+else if(
+trade.price<trade.entry
+)
+result="LOSS";
 
 }else{
 
-if(trade.price<trade.entry)result="WIN";
-else if(trade.price>trade.entry)result="LOSS";
+if(
+trade.price<trade.entry
+)
+result="WIN";
+
+else if(
+trade.price>trade.entry
+)
+result="LOSS";
 
 }
 
@@ -863,25 +1304,42 @@ let profit=0;
 
 if(result==="WIN"){
 
-profit=trade.amount*.82;
+profit=
+trade.amount*.82;
+
 balance+=profit;
+
 wins++;
+
 consecutiveLosses=0;
 
-}else if(result==="LOSS"){
+}else if(
+result==="LOSS"
+){
 
-profit=-trade.amount;
-balance-=trade.amount;
+profit=
+-trade.amount;
+
+balance-=
+trade.amount;
+
 losses++;
+
 consecutiveLosses++;
 
 }
 
-saveHistory(trade,result,profit);
+saveHistory(
+trade,
+result,
+profit
+);
 
 openTrade=null;
 
-document.getElementById("openTradeCard").style.display="none";
+document.getElementById(
+"openTradeCard"
+).style.display="none";
 
 updateStats();
 saveState();
@@ -889,34 +1347,59 @@ saveState();
 if(autoDemo){
 
 const maxLoss=
-Number(document.getElementById("maxLosses").value)||2;
+Number(
+document.getElementById(
+"maxLosses"
+).value
+)||2;
 
-if(consecutiveLosses>=maxLoss){
+if(
+consecutiveLosses>=maxLoss
+){
 
-stopAuto("AUTO stopped after loss limit.");
+stopAuto(
+"AUTO stopped after loss limit."
+);
+
 return;
 
 }
 
 engineStatus.textContent=
-result+" • next scan in 5 seconds…";
+result+
+" • next scan in 5 seconds…";
 
 scheduleNextScan();
-}
+
 }
 
-function saveHistory(trade,result,profit){
+}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+function saveHistory(
+trade,
+result,
+profit
+){
 
 history.unshift({
+
 pair:trade.pair,
 direction:trade.direction,
 confidence:trade.confidence,
 result,
 profit,
-time:new Date().toLocaleString()
+time:
+new Date().toLocaleString()
+
 });
 
-history=history.slice(0,100);
+history=
+history.slice(0,100);
 
 localStorage.setItem(
 HISTORY_KEY,
@@ -924,11 +1407,15 @@ JSON.stringify(history)
 );
 
 renderHistory();
+
 }
 
 function renderHistory(){
 
-const box=document.getElementById("history");
+const box=
+document.getElementById(
+"history"
+);
 
 if(!history.length){
 
@@ -936,22 +1423,31 @@ box.innerHTML=
 '<div class="empty">No demo trades yet.</div>';
 
 return;
+
 }
 
 box.innerHTML=
 history.map(t=>{
 
 const cls=
-t.result==="WIN"?
-"win":
-t.result==="LOSS"?
-"loss":
+t.result==="WIN"
+?"win":
+t.result==="LOSS"
+?"loss":
 "draw";
 
 const profit=
-(t.profit>0?"+":t.profit<0?"-":"")+
-"£"+
-Math.abs(t.profit||0).toFixed(2);
+(
+t.profit>0
+?"+"
+:t.profit<0
+?"-"
+:""
+)
++"£"+
+Math.abs(
+t.profit||0
+).toFixed(2);
 
 return`
 
@@ -959,99 +1455,178 @@ return`
 
 <div>
 <strong>${t.pair}</strong><br>
-<span style="color:#748178;font-size:9px">${t.time}</span>
+<span style="color:#748178;font-size:9px">
+${t.time}
+</span>
 </div>
 
-<div class="${t.direction==="CALL"?"call":"put"}">
+<div class="${
+t.direction==="CALL"
+?"call"
+:"put"
+}">
 ${t.direction}
 </div>
 
-<div>${t.confidence}%</div>
+<div>
+${t.confidence}%
+</div>
 
 <div class="${cls}">
-${t.result}<br>${profit}
+${t.result}<br>
+${profit}
 </div>
 
 </div>
 `;
 
 }).join("");
+
 }
+
+
+/* =========================
+   STATS
+========================= */
 
 function updateStats(){
 
-document.getElementById("balance").textContent=
-"£"+balance.toFixed(2);
+document.getElementById(
+"balance"
+).textContent=
+"£"+
+balance.toFixed(2);
 
-document.getElementById("wins").textContent=wins;
-document.getElementById("losses").textContent=losses;
+document.getElementById(
+"wins"
+).textContent=
+wins;
 
-const total=wins+losses;
+document.getElementById(
+"losses"
+).textContent=
+losses;
 
-document.getElementById("tradesCount").textContent=total;
+const total=
+wins+losses;
 
-document.getElementById("winrate").textContent=
-total?
-Math.round(wins/total*100)+"%":
-"0%";
+document.getElementById(
+"tradesCount"
+).textContent=
+total;
 
-document.getElementById("lossStreak").textContent=
+document.getElementById(
+"winrate"
+).textContent=
+total
+?Math.round(
+wins/total*100
+)+"%"
+:"0%";
+
+document.getElementById(
+"lossStreak"
+).textContent=
 consecutiveLosses;
 
-document.getElementById("balanceInput").value=
+document.getElementById(
+"balanceInput"
+).value=
 balance.toFixed(2);
+
 }
+
+
+/* =========================
+   AUTO
+========================= */
 
 function updateAutoButton(){
 
-const btn=document.getElementById("autoBtn");
+const btn=
+document.getElementById(
+"autoBtn"
+);
 
 if(autoDemo){
 
-btn.textContent="AUTO DEMO: ON";
-btn.className="btn autoOn";
+btn.textContent=
+"AUTO DEMO: ON";
+
+btn.className=
+"btn autoOn";
 
 }else{
 
-btn.textContent="AUTO DEMO: OFF";
-btn.className="btn autoOff";
+btn.textContent=
+"AUTO DEMO: OFF";
+
+btn.className=
+"btn autoOff";
 
 }
+
 }
 
 function scheduleNextScan(){
 
-clearTimeout(autoTimer);
+clearTimeout(
+autoTimer
+);
 
-if(!autoDemo||openTrade)return;
+if(
+!autoDemo||
+openTrade
+)
+return;
 
-autoTimer=setTimeout(()=>{
+autoTimer=
+setTimeout(()=>{
 
-if(autoDemo&&!openTrade){
+if(
+autoDemo&&
+!openTrade
+){
+
 autoScanMarket();
+
 }
 
 },5000);
+
 }
 
 function stopAuto(message){
 
 autoDemo=false;
-clearTimeout(autoTimer);
+
+clearTimeout(
+autoTimer
+);
 
 updateAutoButton();
 
 engineStatus.textContent=
-message||"AUTO DEMO off";
+message||
+"AUTO DEMO off";
+
 }
 
-document.querySelectorAll(".asset").forEach(btn=>{
+
+/* =========================
+   BUTTONS
+========================= */
+
+document
+.querySelectorAll(".asset")
+.forEach(btn=>{
 
 btn.onclick=()=>{
 
 if(openTrade)return;
 
-selectedPair=btn.dataset.pair;
+selectedPair=
+btn.dataset.pair;
 
 highlightSelectedPair();
 
@@ -1062,32 +1637,51 @@ renderSignal();
 saveState();
 
 };
+
 });
 
-document.querySelectorAll(".tf").forEach(btn=>{
+document
+.querySelectorAll(".tf")
+.forEach(btn=>{
 
 btn.onclick=()=>{
 
 if(openTrade)return;
 
-document.querySelectorAll(".tf").forEach(
-b=>b.classList.remove("active")
+document
+.querySelectorAll(".tf")
+.forEach(
+b=>b.classList.remove(
+"active"
+)
 );
 
-btn.classList.add("active");
+btn.classList.add(
+"active"
+);
 
-timeframe=Number(btn.dataset.tf);
+timeframe=
+Number(
+btn.dataset.tf
+);
 
 saveState();
+
 };
+
 });
 
-document.getElementById("analyseBtn").onclick=
+document.getElementById(
+"analyseBtn"
+).onclick=
 analyseMarket;
 
-document.getElementById("autoBtn").onclick=()=>{
+document.getElementById(
+"autoBtn"
+).onclick=()=>{
 
-autoDemo=!autoDemo;
+autoDemo=
+!autoDemo;
 
 updateAutoButton();
 
@@ -1100,37 +1694,58 @@ autoScanMarket();
 
 }else{
 
-clearTimeout(autoTimer);
+clearTimeout(
+autoTimer
+);
 
 engineStatus.textContent=
-openTrade?
-"AUTO off; trade will finish.":
-"AUTO DEMO off";
+openTrade
+?"AUTO off; trade will finish."
+:"AUTO DEMO off";
+
 }
+
 };
 
-document.getElementById("balanceInput").onchange=()=>{
+document.getElementById(
+"balanceInput"
+).onchange=()=>{
 
 if(openTrade)return;
 
 const value=
-Number(document.getElementById("balanceInput").value);
+Number(
+document.getElementById(
+"balanceInput"
+).value
+);
 
 if(value>0){
 
 balance=value;
+
 updateStats();
 saveState();
 
 }
+
 };
 
-document.getElementById("clearHistory").onclick=()=>{
+document.getElementById(
+"clearHistory"
+).onclick=()=>{
 
-if(confirm("Clear history and statistics?")){
+if(
+confirm(
+"Clear history and statistics?"
+)
+){
 
 history=[];
-localStorage.removeItem(HISTORY_KEY);
+
+localStorage.removeItem(
+HISTORY_KEY
+);
 
 wins=0;
 losses=0;
@@ -1141,37 +1756,65 @@ updateStats();
 saveState();
 
 }
+
 };
 
-document.querySelectorAll(".nav").forEach(btn=>{
+document
+.querySelectorAll(".nav")
+.forEach(btn=>{
 
 btn.onclick=()=>{
 
-document.querySelectorAll(".nav").forEach(
-b=>b.classList.remove("active")
+document
+.querySelectorAll(".nav")
+.forEach(
+b=>b.classList.remove(
+"active"
+)
 );
 
-btn.classList.add("active");
+btn.classList.add(
+"active"
+);
 
-document.querySelectorAll(".screen").forEach(
-s=>s.classList.remove("active")
+document
+.querySelectorAll(".screen")
+.forEach(
+s=>s.classList.remove(
+"active"
+)
 );
 
 document.getElementById(
 btn.dataset.screen
-).classList.add("active");
+).classList.add(
+"active"
+);
 
 };
+
 });
 
+
+/* =========================
+   START APP
+========================= */
+
 loadState();
+
 highlightSelectedPair();
 
-document.querySelectorAll(".tf").forEach(b=>{
+document
+.querySelectorAll(".tf")
+.forEach(b=>{
+
 b.classList.toggle(
 "active",
-Number(b.dataset.tf)===timeframe
+Number(
+b.dataset.tf
+)===timeframe
 );
+
 });
 
 renderSignal();
@@ -1179,7 +1822,11 @@ renderHistory();
 updateStats();
 updateAutoButton();
 
+/* CONNECT TO RENDER */
+
+checkServer();
+
 </script>
 
 </body>
-</html>
+  </html>
