@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#060908">
+
+<title>ADAMS OPTION</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#050807;
+  --panel:#0b1210;
+  --panel2:#101a16;
+  --line:#20342b;
+  --green:#00e58b;
+  --red:#ff4e63;
+  --gold:#ffd66b;
+  --blue:#55aaff;
+  --text:#f3f7f5;
+  --muted:#829087;
+}
+
+body{
+  background:
+  radial-gradient(circle at 50% -10%,#123d28 0,transparent 34%),
+  var(--bg);
+
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+header{
+  padding:18px 16px 10px;
+  text-align:center;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:var(--gold);
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+}
+
+.status{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 12px;
+  border:1px solid var(--green);
+  color:var(--green);
+  border-radius:30px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:10px 14px;
+}
+
+.card{
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:12px;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+.title{
+  font-size:13px;
+  font-weight:bold;
+  color:var(--gold);
+  margin-bottom:12px;
+  letter-spacing:.7px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+label{
+  font-size:11px;
+  color:var(--muted);
+  display:block;
+  margin-bottom:5px;
+}
+
+select,input{
+  width:100%;
+  background:#07100c;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:12px;
+  font-size:14px;
+  outline:none;
+}
+
+.assetButtons{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+
+.asset{
+  background:#09110e;
+  border:1px solid var(--line);
+  padding:11px 5px;
+  color:white;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.asset.active{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+.tfrow{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.tf{
+  flex:1;
+  background:#08100d;
+  border:1px solid var(--line);
+  color:#aaa;
+  padding:10px;
+  border-radius:9px;
+}
+
+.tf.active{
+  color:var(--gold);
+  border-color:var(--gold);
+}
+
+.signalBox{
+  text-align:center;
+  padding:16px 5px;
+}
+
+.signal{
+  font-size:37px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.call{
+  color:var(--green);
+}
+
+.put{
+  color:var(--red);
+}
+
+.wait{
+  color:var(--gold);
+}
+
+.confidence{
+  font-size:15px;
+  color:#bbb;
+}
+
+.confidence strong{
+  color:white;
+}
+
+.bar{
+  height:9px;
+  background:#17211d;
+  margin-top:12px;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.barfill{
+  height:100%;
+  width:0%;
+  background:var(--green);
+  transition:.4s;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.stat{
+  background:#07100c;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 5px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  font-size:17px;
+  margin-bottom:3px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.btn{
+  width:100%;
+  border:none;
+  padding:14px;
+  border-radius:12px;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.analyse{
+  background:var(--gold);
+  color:#171400;
+}
+
+.autoOn{
+  background:var(--green);
+  color:#00190f;
+}
+
+.autoOff{
+  background:#28332e;
+  color:white;
+}
+
+.danger{
+  background:#291116;
+  color:var(--red);
+  border:1px solid #64232e;
+}
+
+.demoTrade{
+  border-left:4px solid var(--gold);
+}
+
+.tradeTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.tradePair{
+  font-weight:900;
+}
+
+.badge{
+  padding:5px 8px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.badge.call{
+  background:rgba(0,229,139,.12);
+}
+
+.badge.put{
+  background:rgba(255,78,99,.12);
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  margin-top:8px;
+  font-size:12px;
+}
+
+.row span:first-child{
+  color:var(--muted);
+}
+
+.historyItem{
+  display:grid;
+  grid-template-columns:1.2fr .8fr .8fr .8fr;
+  gap:5px;
+  padding:10px 0;
+  border-bottom:1px solid #17241e;
+  font-size:12px;
+  align-items:center;
+}
+
+.win{
+  color:var(--green);
+  font-weight:bold;
+}
+
+.loss{
+  color:var(--red);
+  font-weight:bold;
+}
+
+.empty{
+  text-align:center;
+  padding:20px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.note{
+  font-size:11px;
+  line-height:1.5;
+  color:var(--muted);
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:rgba(5,8,7,.96);
+  border-top:1px solid var(--line);
+  padding:9px 12px max(9px,env(safe-area-inset-bottom));
+  display:flex;
+  justify-content:center;
+  z-index:20;
+}
+
+.bottomInner{
+  max-width:700px;
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+}
+
+.nav{
+  background:none;
+  border:none;
+  color:#728078;
+  padding:8px;
+  font-size:11px;
+}
+
+.nav.active{
+  color:var(--gold);
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+@media(min-width:600px){
+  .assetButtons{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ADAMS OPTION</div>
+  <div class="subtitle">FOREX SIGNAL ENGINE • AUTO DEMO</div>
+  <div class="status">DEMO MODE</div>
+</header>
+
+<div class="container">
+
+<section id="tradeScreen" class="screen active">
+
+  <div class="card">
+    <div class="title">FOREX PAIRS</div>
+
+    <div class="assetButtons">
+      <button class="asset active" data-pair="EUR/USD">EUR/USD</button>
+      <button class="asset" data-pair="GBP/USD">GBP/USD</button>
+      <button class="asset" data-pair="EUR/GBP">EUR/GBP</button>
+      <button class="asset" data-pair="USD/JPY">USD/JPY</button>
+      <button class="asset" data-pair="AUD/USD">AUD/USD</button>
+      <button class="asset" data-pair="USD/CAD">USD/CAD</button>
+      <button class="asset" data-pair="USD/CHF">USD/CHF</button>
+      <button class="asset" data-pair="NZD/USD">NZD/USD</button>
+    </div>
+
+    <div class="tfrow">
+      <button class="tf active" data-tf="1">M1</button>
+      <button class="tf" data-tf="5">M5</button>
+      <button class="tf" data-tf="15">M15</button>
+    </div>
+  </div>
+
+  <div class="card signalBox">
+
+    <div class="title">CURRENT SIGNAL</div>
+
+    <div id="signal" class="signal wait">
+      WAIT
+    </div>
+
+    <div class="confidence">
+      Confidence:
+      <strong id="confidence">0%</strong>
+    </div>
+
+    <div class="bar">
+      <div id="barfill" class="barfill"></div>
+    </div>
+
+    <button id="analyseBtn" class="btn analyse">
+      ANALYSE MARKET
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <div class="title">AUTO DEMO SETTINGS</div>
+
+    <div class="grid">
+
+      <div>
+        <label>Demo Balance</label>
+        <input
+          type="number"
+          id="balanceInput"
+          value="1000"
+          min="10"
+        >
+      </div>
+
+      <div>
+        <label>Risk per Trade %</label>
+        <input
+          type="number"
+          id="riskInput"
+          value="1"
+          min="0.1"
+          max="5"
+          step="0.1"
+        >
+      </div>
+
+      <div>
+        <label>Minimum Confidence</label>
+        <input
+          type="number"
+          id="minConfidence"
+          value="80"
+          min="50"
+          max="99"
+        >
+      </div>
+
+      <div>
+        <label>Max Consecutive Losses</label>
+        <input
+          type="number"
+          id="maxLosses"
+          value="2"
+          min="1"
+          max="10"
+        >
+      </div>
+
+    </div>
+
+    <button id="autoBtn" class="btn autoOff">
+      AUTO DEMO: OFF
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <div class="title">ACCOUNT</div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <b id="balance">£1000.00</b>
+        <span>BALANCE</span>
+      </div>
+
+      <div class="stat">
+        <b id="wins">0</b>
+        <span>WINS</span>
+      </div>
+
+      <div class="stat">
+        <b id="losses">0</b>
+        <span>LOSSES</span>
+      </div>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <b id="winrate">0%</b>
+        <span>WIN RATE</span>
+      </div>
+
+      <div class="stat">
+        <b id="lossStreak">0</b>
+        <span>LOSS STREAK</span>
+      </div>
+
+      <div class="stat">
+        <b id="tradesCount">0</b>
+        <span>TRADES</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div
+    id="openTradeCard"
+    class="card demoTrade"
+    style="display:none"
+  >
+
+    <div class="title">OPEN DEMO TRADE</div>
+
+    <div class="tradeTop">
+
+      <span id="openPair" class="tradePair">
+        EUR/USD
+      </span>
+
+      <span
+        id="openDirection"
+        class="badge call">
+        CALL
+      </span>
+
+    </div>
+
+    <div class="row">
+      <span>Amount</span>
+      <strong id="openAmount">£0</strong>
+    </div>
+
+    <div class="row">
+      <span>Expiry</span>
+      <strong id="openExpiry">1 minute</strong>
+    </div>
+
+    <div class="row">
+      <span>Confidence</span>
+      <strong id="openConfidence">0%</strong>
+    </div>
+
+    <div class="row">
+      <span>Time remaining</span>
+      <strong id="countdown">--</strong>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="historyScreen" class="screen">
+
+  <div class="card">
+
+    <div class="title">TRADE HISTORY</div>
+
+    <div id="history"></div>
+
+    <button
+      id="clearHistory"
+      class="btn danger">
+      CLEAR HISTORY
+    </button>
+
+  </div>
+
+</section>
+
+
+<section id="settingsScreen" class="screen">
+
+  <div class="card">
+
+    <div class="title">SAFETY RULES</div>
+
+    <p class="note">
+      AUTO DEMO only opens simulated positions when
+      signal confidence is above your selected minimum.
+      Trading pauses automatically after the selected
+      number of consecutive losses.
+    </p>
+
+    <br>
+
+    <p class="note">
+      This version does not connect to Pocket Option
+      and does not place real-money trades.
+      Demo results do not guarantee future results.
+    </p>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<div class="bottom">
+  <div class="bottomInner">
+
+    <button
+      class="nav active"
+      data-screen="tradeScreen">
+      TRADE
+    </button>
+
+    <button
+      class="nav"
+      data-screen="historyScreen">
+      HISTORY
+    </button>
+
+    <button
+      class="nav"
+      data-screen="settingsScreen">
+      SETTINGS
+    </button>
+
+  </div>
+</div>
+
+
+<script>
+
+const pairs = [
+  "EUR/USD",
+  "GBP/USD",
+  "EUR/GBP",
+  "USD/JPY",
+  "AUD/USD",
+  "USD/CAD",
+  "USD/CHF",
+  "NZD/USD"
+];
+
+let selectedPair = "EUR/USD";
+let timeframe = 1;
+
+let currentSignal = "WAIT";
+let currentConfidence = 0;
+
+let autoDemo = false;
+let openTrade = null;
+
+let balance = 1000;
+let wins = 0;
+let losses = 0;
+let consecutiveLosses = 0;
+
+let history =
+JSON.parse(
+  localStorage.getItem("adamsOptionHistory") || "[]"
+);
+
+const signalEl =
+document.getElementById("signal");
+
+const confidenceEl =
+document.getElementById("confidence");
+
+const barfill =
+document.getElementById("barfill");
+
+
+function sleep(ms){
+  return new Promise(resolve => setTimeout(resolve,ms));
+}
+
+
+function random(min,max){
+  return Math.random()*(max-min)+min;
+}
+
+
+function analyseMarket(){
+
+  const momentum =
+  random(-100,100);
+
+  const trend =
+  random(-100,100);
+
+  const strength =
+  random(0,100);
+
+  let score =
+  momentum*0.45 +
+  trend*0.35 +
+  (strength-50)*0.20;
+
+  let direction = "WAIT";
+
+  if(score > 18){
+    direction = "CALL";
+  }
+
+  if(score < -18){
+    direction = "PUT";
+  }
+
+  let confidence =
+  Math.min(
+    96,
+    Math.max(
+      55,
+      Math.round(
+        62 +
+        Math.abs(score)*0.35 +
+        random(-5,8)
+      )
+    )
+  );
+
+  if(Math.abs(score) < 18){
+    confidence =
+    Math.round(random(50,72));
+  }
+
+  currentSignal = direction;
+  currentConfidence = confidence;
+
+  renderSignal();
+
+  if(autoDemo){
+    tryAutoTrade();
+  }
+
+}
+
+
+function renderSignal(){
+
+  signalEl.textContent =
+  currentSignal;
+
+  signalEl.className =
+  "signal " +
+  (
+    currentSignal==="CALL"
+    ? "call"
+    :
+    currentSignal==="PUT"
+    ? "put"
+    :
+    "wait"
+  );
+
+  confidenceEl.textContent =
+  currentConfidence + "%";
+
+  barfill.style.width =
+  currentConfidence + "%";
+
+}
+
+
+function getTradeAmount(){
+
+  const risk =
+  Number(
+    document.getElementById("riskInput").value
+  ) || 1;
+
+  return Math.max(
+    .5,
+    balance * risk / 100
+  );
+
+}
+
+
+function tryAutoTrade(){
+
+  if(openTrade){
+    return;
+  }
+
+  const min =
+  Number(
+    document.getElementById("minConfidence").value
+  ) || 80;
+
+  const maxLoss =
+  Number(
+    document.getElementById("maxLosses").value
+  ) || 2;
+
+  if(consecutiveLosses >= maxLoss){
+
+    autoDemo = false;
+    updateAutoButton();
+
+    alert(
+      "AUTO DEMO stopped after " +
+      consecutiveLosses +
+      " consecutive losses."
+    );
+
+    return;
+  }
+
+  if(
+    currentSignal==="WAIT" ||
+    currentConfidence < min
+  ){
+    return;
+  }
+
+  openDemoTrade();
+
+}
+
+
+function openDemoTrade(){
+
+  const amount =
+  getTradeAmount();
+
+  const expirySeconds =
+  timeframe * 60;
+
+  openTrade = {
+    pair:selectedPair,
+    direction:currentSignal,
+    confidence:currentConfidence,
+    amount,
+    seconds:expirySeconds,
+    opened:Date.now()
+  };
+
+  renderOpenTrade();
+
+  runExpiry();
+
+}
+
+
+function renderOpenTrade(){
+
+  const card =
+  document.getElementById("openTradeCard");
+
+  if(!openTrade){
+
+    card.style.display="none";
+    return;
+
+  }
+
+  card.style.display="block";
+
+  document.getElementById("openPair")
+  .textContent =
+  openTrade.pair;
+
+  const dir =
+  document.getElementById("openDirection");
+
+  dir.textContent =
+  openTrade.direction;
+
+  dir.className =
+  "badge " +
+  (
+    openTrade.direction==="CALL"
+    ? "call"
+    : "put"
+  );
+
+  document.getElementById("openAmount")
+  .textContent =
+  "£" +
+  openTrade.amount.toFixed(2);
+
+  document.getElementById("openExpiry")
+  .textContent =
+  timeframe +
+  (
+    timeframe===1
+    ? " minute"
+    : " minutes"
+  );
+
+  document.getElementById("openConfidence")
+  .textContent =
+  openTrade.confidence + "%";
+
+}
+
+
+async function runExpiry(){
+
+  while(openTrade && openTrade.seconds > 0){
+
+    document.getElementById("countdown")
+    .textContent =
+    formatTime(openTrade.seconds);
+
+    await sleep(1000);
+
+    if(!openTrade){
+      return;
+    }
+
+    openTrade.seconds--;
+
+  }
+
+  if(openTrade){
+    closeDemoTrade();
+  }
+
+}
+
+
+function formatTime(seconds){
+
+  const m =
+  Math.floor(seconds/60);
+
+  const s =
+  seconds%60;
+
+  return (
+    String(m).padStart(2,"0") +
+    ":" +
+    String(s).padStart(2,"0")
+  );
+
+}
+
+
+function closeDemoTrade(){
+
+  const trade =
+  openTrade;
+
+  /*
+  DEMO RESULT ENGINE
+
+  Confidence influences probability,
+  but nothing here represents a real
+  market prediction or guaranteed return.
+  */
+
+  const probability =
+  Math.min(
+    .72,
+    Math.max(
+      .48,
+      .48 +
+      (
+        trade.confidence-50
+      ) * .0045
+    )
+  );
+
+  const won =
+  Math.random() < probability;
+
+  const payout = .82;
+
+  if(won){
+
+    const profit =
+    trade.amount * payout;
+
+    balance += profit;
+
+    wins++;
+    consecutiveLosses = 0;
+
+    saveHistory(
+      trade,
+      "WIN",
+      profit
+    );
+
+  }else{
+
+    balance -= trade.amount;
+
+    losses++;
+    consecutiveLosses++;
+
+    saveHistory(
+      trade,
+      "LOSS",
+      -trade.amount
+    );
+
+  }
+
+  openTrade = null;
+
+  document.getElementById("openTradeCard")
+  .style.display="none";
+
+  updateStats();
+
+  if(autoDemo){
+
+    setTimeout(
+      analyseMarket,
+      3000
+    );
+
+  }
+
+}
+
+
+function saveHistory(
+trade,
+result,
+profit
+){
+
+  history.unshift({
+
+    pair:trade.pair,
+
+    direction:
+    trade.direction,
+
+    confidence:
+    trade.confidence,
+
+    amount:
+    trade.amount,
+
+    result,
+
+    profit,
+
+    time:
+    new Date().toLocaleString()
+
+  });
+
+  history =
+  history.slice(0,100);
+
+  localStorage.setItem(
+    "adamsOptionHistory",
+    JSON.stringify(history)
+  );
+
+  renderHistory();
+
+}
+
+
+function renderHistory(){
+
+  const box =
+  document.getElementById("history");
+
+  if(history.length===0){
+
+    box.innerHTML =
+    '<div class="empty">No demo trades yet.</div>';
+
+    return;
+
+  }
+
+  box.innerHTML =
+  history.map(t => {
+
+    const resultClass =
+    t.result==="WIN"
+    ? "win"
+    : "loss";
+
+    const profitText =
+    (
+      t.profit>=0
+      ? "+"
+      : "-"
+    ) +
+    "£" +
+    Math.abs(t.profit).toFixed(2);
+
+    return `
+    <div class="historyItem">
+
+      <div>
+        <strong>${t.pair}</strong>
+        <br>
+        <span style="color:#748178;font-size:9px">
+          ${t.time}
+        </span>
+      </div>
+
+      <div
+        class="${t.direction==="CALL" ? "call":"put"}">
+        ${t.direction}
+      </div>
+
+      <div>
+        ${t.confidence}%
+      </div>
+
+      <div class="${resultClass}">
+        ${t.result}
+        <br>
+        ${profitText}
+      </div>
+
+    </div>
+    `;
+
+  }).join("");
+
+}
+
+
+function updateStats(){
+
+  document.getElementById("balance")
+  .textContent =
+  "£" + balance.toFixed(2);
+
+  document.getElementById("wins")
+  .textContent =
+  wins;
+
+  document.getElementById("losses")
+  .textContent =
+  losses;
+
+  const total =
+  wins + losses;
+
+  document.getElementById("tradesCount")
+  .textContent =
+  total;
+
+  document.getElementById("winrate")
+  .textContent =
+  total
+  ? Math.round(
+      wins/total*100
+    ) + "%"
+  : "0%";
+
+  document.getElementById("lossStreak")
+  .textContent =
+  consecutiveLosses;
+
+}
+
+
+function updateAutoButton(){
+
+  const btn =
+  document.getElementById("autoBtn");
+
+  if(autoDemo){
+
+    btn.textContent =
+    "AUTO DEMO: ON";
+
+    btn.className =
+    "btn autoOn";
+
+  }else{
+
+    btn.textContent =
+    "AUTO DEMO: OFF";
+
+    btn.className =
+    "btn autoOff";
+
+  }
+
+}
+
+
+document.querySelectorAll(".asset")
+.forEach(btn=>{
+
+  btn.onclick = ()=>{
+
+    document.querySelectorAll(".asset")
+    .forEach(b=>
+      b.classList.remove("active")
+    );
+
+    btn.classList.add("active");
+
+    selectedPair =
+    btn.dataset.pair;
+
+    currentSignal="WAIT";
+    currentConfidence=0;
+
+    renderSignal();
+
+  };
+
+});
+
+
+document.querySelectorAll(".tf")
+.forEach(btn=>{
+
+  btn.onclick = ()=>{
+
+    document.querySelectorAll(".tf")
+    .forEach(b=>
+      b.classList.remove("active")
+    );
+
+    btn.classList.add("active");
+
+    timeframe =
+    Number(btn.dataset.tf);
+
+  };
+
+});
+
+
+document.getElementById("analyseBtn")
+.onclick =
+analyseMarket;
+
+
+document.getElementById("autoBtn")
+.onclick = ()=>{
+
+  autoDemo =
+  !autoDemo;
+
+  updateAutoButton();
+
+  if(autoDemo){
+
+    analyseMarket();
+
+  }
+
+};
+
+
+document.getElementById("balanceInput")
+.onchange = ()=>{
+
+  const value =
+  Number(
+    document.getElementById("balanceInput").value
+  );
+
+  if(value>0){
+
+    balance=value;
+    updateStats();
+
+  }
+
+};
+
+
+document.getElementById("clearHistory")
+.onclick = ()=>{
+
+  if(
+    confirm(
+      "Clear all demo trade history?"
+    )
+  ){
+
+    history=[];
+
+    localStorage.removeItem(
+      "adamsOptionHistory"
+    );
+
+    wins=0;
+    losses=0;
+    consecutiveLosses=0;
+
+    renderHistory();
+    updateStats();
+
+  }
+
+};
+
+
+document.querySelectorAll(".nav")
+.forEach(btn=>{
+
+  btn.onclick = ()=>{
+
+    document.querySelectorAll(".nav")
+    .forEach(b=>
+      b.classList.remove("active")
+    );
+
+    btn.classList.add("active");
+
+    document.querySelectorAll(".screen")
+    .forEach(s=>
+      s.classList.remove("active")
+    );
+
+    document
+    .getElementById(
+      btn.dataset.screen
+    )
+    .classList.add("active");
+
+  };
+
+});
+
+
+renderSignal();
+renderHistory();
+updateStats();
+updateAutoButton();
+
+</script>
+
+</body>
+      </html>
