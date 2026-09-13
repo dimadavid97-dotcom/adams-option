@@ -17,6 +17,14 @@
 
 <title>ADAMS OPTION</title>
 
+
+<!-- ONESIGNAL -->
+<script
+  src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+  defer
+></script>
+
+
 <style>
 
 *{
@@ -38,7 +46,6 @@
 }
 
 body{
-
   background:
     radial-gradient(
       circle at 50% -10%,
@@ -60,84 +67,51 @@ body{
 }
 
 header{
-
-  padding:
-    18px 16px 10px;
-
+  padding:18px 16px 10px;
   text-align:center;
 }
 
 .logo{
-
   font-size:28px;
-
   font-weight:900;
-
   letter-spacing:2px;
-
   color:var(--gold);
 }
 
 .subtitle{
-
   color:var(--muted);
-
   font-size:12px;
-
   margin-top:5px;
 }
 
 .status{
-
   display:inline-block;
-
   margin-top:10px;
-
-  padding:
-    6px 12px;
-
-  border:
-    1px solid var(--gold);
-
+  padding:6px 12px;
+  border:1px solid var(--gold);
   color:var(--gold);
-
   border-radius:30px;
-
   font-size:11px;
-
   font-weight:bold;
 }
 
 .status.online{
-
-  border-color:
-    var(--green);
-
-  color:
-    var(--green);
+  border-color:var(--green);
+  color:var(--green);
 }
 
 .status.offline{
-
-  border-color:
-    var(--red);
-
-  color:
-    var(--red);
+  border-color:var(--red);
+  color:var(--red);
 }
 
 .container{
-
   max-width:700px;
-
   margin:auto;
-
-  padding:
-    10px 14px;
+  padding:10px 14px;
 }
 
 .card{
-
   background:
     linear-gradient(
       145deg,
@@ -145,576 +119,381 @@ header{
       var(--panel2)
     );
 
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:18px;
-
   padding:15px;
-
   margin-bottom:12px;
 }
 
 .title{
-
   font-size:13px;
-
   font-weight:bold;
-
   color:var(--gold);
-
   margin-bottom:12px;
-
   letter-spacing:.7px;
 }
 
 .assetButtons{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
+  grid-template-columns:repeat(2,1fr);
   gap:8px;
 }
 
 .asset{
-
   background:#09110e;
-
-  border:
-    1px solid var(--line);
-
-  padding:
-    11px 5px;
-
+  border:1px solid var(--line);
+  padding:11px 5px;
   color:white;
-
   border-radius:10px;
-
   font-weight:bold;
 }
 
 .asset.active{
-
-  border-color:
-    var(--gold);
-
-  color:
-    var(--gold);
+  border-color:var(--gold);
+  color:var(--gold);
 }
 
 .tfrow{
-
   display:flex;
-
   gap:7px;
-
   margin-top:10px;
 }
 
 .tf{
-
   flex:1;
-
   background:#08100d;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   color:#aaa;
-
   padding:10px;
-
   border-radius:9px;
 }
 
 .tf.active{
-
   color:var(--gold);
-
-  border-color:
-    var(--gold);
+  border-color:var(--gold);
 }
 
 .signalBox{
-
   text-align:center;
 }
 
 .signal{
-
   font-size:42px;
-
   font-weight:900;
-
   margin-bottom:5px;
 }
 
 .call{
-
-  color:
-    var(--green);
+  color:var(--green);
 }
 
 .put{
-
-  color:
-    var(--red);
+  color:var(--red);
 }
 
 .wait{
-
-  color:
-    var(--gold);
+  color:var(--gold);
 }
 
 .confidence{
-
   font-size:15px;
-
   color:#bbb;
 }
 
 .bar{
-
   height:9px;
-
   background:#17211d;
-
   margin-top:12px;
-
   border-radius:30px;
-
   overflow:hidden;
 }
 
 .barfill{
-
   height:100%;
-
   width:0%;
-
-  background:
-    var(--green);
-
+  background:var(--green);
   transition:.4s;
 }
 
 .btn{
-
   width:100%;
-
   border:none;
-
   padding:14px;
-
   border-radius:12px;
-
   font-weight:900;
-
   font-size:14px;
-
   margin-top:10px;
-
   cursor:pointer;
 }
 
 .btn:disabled{
-
   opacity:.55;
 }
 
 .analyse{
-
-  background:
-    var(--gold);
-
+  background:var(--gold);
   color:#111;
 }
 
 .autoScan{
-
-  background:
-    var(--green);
-
+  background:var(--green);
   color:#00190f;
 }
 
 .pocketBtn{
-
   display:block;
-
   text-decoration:none;
-
   text-align:center;
-
   background:#151b18;
-
-  color:
-    var(--gold);
-
-  border:
-    1px solid var(--gold);
+  color:var(--gold);
+  border:1px solid var(--gold);
 }
 
 .pocketBtn.callPocket{
-
-  border-color:
-    var(--green);
-
-  color:
-    var(--green);
-
-  background:
-    rgba(0,229,139,.08);
+  border-color:var(--green);
+  color:var(--green);
+  background:rgba(0,229,139,.08);
 }
 
 .pocketBtn.putPocket{
+  border-color:var(--red);
+  color:var(--red);
+  background:rgba(255,78,99,.08);
+}
 
-  border-color:
-    var(--red);
+.notificationBtn{
+  background:var(--green);
+  color:#00190f;
+}
 
-  color:
-    var(--red);
+.notificationOn{
+  background:rgba(0,229,139,.10);
+  color:var(--green);
+  border:1px solid var(--green);
+}
 
-  background:
-    rgba(255,78,99,.08);
+.notificationBlocked{
+  background:rgba(255,78,99,.10);
+  color:var(--red);
+  border:1px solid var(--red);
+}
+
+.testBtn{
+  background:#151b18;
+  color:var(--gold);
+  border:1px solid var(--gold);
 }
 
 .stats{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
-
   margin-top:10px;
 }
 
 .stat{
-
   background:#07100c;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
-
-  padding:
-    11px 5px;
-
+  padding:11px 5px;
   text-align:center;
 }
 
 .stat b{
-
   display:block;
-
   font-size:17px;
-
   margin-bottom:3px;
 }
 
 .stat span{
-
-  color:
-    var(--muted);
-
+  color:var(--muted);
   font-size:10px;
 }
 
 .infoGrid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
+  grid-template-columns:repeat(2,1fr);
   gap:8px;
-
   margin-top:12px;
 }
 
 .infoBox{
-
   background:#07100c;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
-
   padding:10px;
-
   text-align:center;
 }
 
 .infoBox span{
-
   display:block;
-
-  color:
-    var(--muted);
-
+  color:var(--muted);
   font-size:10px;
-
   margin-bottom:4px;
 }
 
 .infoBox b{
-
   font-size:14px;
 }
 
 .tradeItem{
-
   background:#07100c;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
-
   padding:12px;
-
   margin-top:9px;
 }
 
 .tradeTop,
 .row{
-
   display:flex;
-
-  justify-content:
-    space-between;
-
+  justify-content:space-between;
   align-items:center;
-
   gap:10px;
-
   margin-top:8px;
 }
 
 .badge{
-
-  padding:
-    5px 9px;
-
+  padding:5px 9px;
   border-radius:20px;
-
   font-size:10px;
-
   font-weight:bold;
 }
 
 .badge.call{
-
-  background:
-    rgba(0,229,139,.12);
-
-  border:
-    1px solid var(--green);
+  background:rgba(0,229,139,.12);
+  border:1px solid var(--green);
 }
 
 .badge.put{
-
-  background:
-    rgba(255,78,99,.12);
-
-  border:
-    1px solid var(--red);
+  background:rgba(255,78,99,.12);
+  border:1px solid var(--red);
 }
 
 .historyItem{
-
   display:grid;
-
-  grid-template-columns:
-    1.2fr .8fr .8fr .9fr;
-
+  grid-template-columns:1.2fr .8fr .8fr .9fr;
   gap:5px;
-
-  padding:
-    10px 0;
-
-  border-bottom:
-    1px solid #17241e;
-
+  padding:10px 0;
+  border-bottom:1px solid #17241e;
   font-size:12px;
 }
 
 .win{
-
-  color:
-    var(--green);
-
+  color:var(--green);
   font-weight:bold;
 }
 
 .loss{
-
-  color:
-    var(--red);
-
+  color:var(--red);
   font-weight:bold;
 }
 
 .draw{
-
-  color:
-    var(--gold);
-
+  color:var(--gold);
   font-weight:bold;
 }
 
 .empty{
-
   text-align:center;
-
   padding:20px;
-
-  color:
-    var(--muted);
+  color:var(--muted);
 }
 
 .note,
 .miniStatus{
-
   font-size:11px;
-
-  color:
-    var(--muted);
-
+  color:var(--muted);
   line-height:1.5;
 }
 
 .miniStatus{
-
   margin-top:10px;
-
   text-align:center;
 }
 
-.selectedInfo{
-
-  margin-top:9px;
-
+.notificationStatus{
+  margin-top:12px;
+  padding:12px;
+  background:#07100c;
+  border:1px solid var(--line);
+  border-radius:12px;
   text-align:center;
-
-  color:
-    var(--gold);
-
   font-size:12px;
+  color:var(--muted);
+  line-height:1.5;
+}
 
+.selectedInfo{
+  margin-top:9px;
+  text-align:center;
+  color:var(--gold);
+  font-size:12px;
   font-weight:bold;
 }
 
 .expiryBig{
-
   margin-top:12px;
-
   padding:11px;
-
   border-radius:12px;
-
   background:#07100c;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   text-align:center;
 }
 
 .expiryBig span{
-
   display:block;
-
-  color:
-    var(--muted);
-
+  color:var(--muted);
   font-size:10px;
 }
 
 .expiryBig b{
-
   display:block;
-
   margin-top:4px;
-
   font-size:22px;
-
-  color:
-    var(--gold);
+  color:var(--gold);
 }
 
 .bottom{
-
   position:fixed;
-
   bottom:0;
-
   left:0;
-
   width:100%;
-
-  background:
-    rgba(5,8,7,.96);
-
-  border-top:
-    1px solid var(--line);
-
-  padding:
-    9px 12px;
+  background:rgba(5,8,7,.96);
+  border-top:1px solid var(--line);
+  padding:9px 12px;
 }
 
 .bottomInner{
-
   max-width:700px;
-
   margin:auto;
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
+  grid-template-columns:repeat(3,1fr);
 }
 
 .nav{
-
   background:none;
-
   border:none;
-
   color:#728078;
-
   padding:8px;
 }
 
 .nav.active{
-
-  color:
-    var(--gold);
+  color:var(--gold);
 }
 
 .screen{
-
   display:none;
 }
 
 .screen.active{
-
   display:block;
 }
 
 @media(min-width:600px){
 
   .assetButtons{
-
-    grid-template-columns:
-      repeat(4,1fr);
+    grid-template-columns:repeat(4,1fr);
   }
 }
 
@@ -729,26 +508,18 @@ header{
 <header>
 
 <div class="logo">
-
   ADAMS OPTION
-
 </div>
-
 
 <div class="subtitle">
-
   FOREX REAL DATA • POCKET MODE • DEMO
-
 </div>
-
 
 <div
   id="serverStatus"
   class="status"
 >
-
   CHECKING SERVER...
-
 </div>
 
 </header>
@@ -765,135 +536,95 @@ header{
 
 <div class="card">
 
-
 <div class="title">
-
   FOREX PAIRS
-
 </div>
 
-
 <div class="assetButtons">
-
 
 <button
   class="asset active"
   data-pair="EUR/USD"
 >
-
   EUR/USD
-
 </button>
-
 
 <button
   class="asset"
   data-pair="GBP/USD"
 >
-
   GBP/USD
-
 </button>
-
 
 <button
   class="asset"
   data-pair="EUR/GBP"
 >
-
   EUR/GBP
-
 </button>
-
 
 <button
   class="asset"
   data-pair="USD/JPY"
 >
-
   USD/JPY
-
 </button>
-
 
 <button
   class="asset"
   data-pair="AUD/USD"
 >
-
   AUD/USD
-
 </button>
-
 
 <button
   class="asset"
   data-pair="USD/CAD"
 >
-
   USD/CAD
-
 </button>
-
 
 <button
   class="asset"
   data-pair="USD/CHF"
 >
-
   USD/CHF
-
 </button>
-
 
 <button
   class="asset"
   data-pair="NZD/USD"
 >
-
   NZD/USD
-
 </button>
-
 
 </div>
 
 
 <div class="tfrow">
 
-
 <button
   class="tf active"
   data-tf="M1"
 >
-
   M1
-
 </button>
-
 
 <button
   class="tf"
   data-tf="M5"
 >
-
   M5
-
 </button>
-
 
 <button
   class="tf"
   data-tf="M15"
 >
-
   M15
-
 </button>
 
-
 </div>
-
 
 </div>
 
@@ -901,36 +632,26 @@ header{
 
 <div class="card signalBox">
 
-
 <div class="title">
-
   CURRENT MARKET SIGNAL
-
 </div>
-
 
 <div
   id="signal"
   class="signal wait"
 >
-
   WAIT
-
 </div>
-
 
 <div class="confidence">
 
   Confidence:
 
   <strong id="confidence">
-
     0%
-
   </strong>
 
 </div>
-
 
 <div class="bar">
 
@@ -941,36 +662,26 @@ header{
 
 </div>
 
-
 <div
   id="selectedInfo"
   class="selectedInfo"
 >
-
   EUR/USD • M1
-
 </div>
-
 
 <button
   id="analyseBtn"
   class="btn analyse"
 >
-
   ANALYSE SELECTED PAIR
-
 </button>
-
 
 <button
   id="autoScanBtn"
   class="btn autoScan"
 >
-
   AUTO SCAN 8 PAIRS
-
 </button>
-
 
 <a
   id="pocketBtn"
@@ -979,34 +690,25 @@ header{
   rel="noopener noreferrer"
   class="btn pocketBtn"
 >
-
   OPEN POCKET OPTION
-
 </a>
-
 
 <div
   id="engineStatus"
   class="miniStatus"
 >
-
   Ready
-
 </div>
 
 
 <div class="expiryBig">
 
   <span>
-
     EXPIRY
-
   </span>
 
   <b id="expiryDisplay">
-
     M1 • 01:00
-
   </b>
 
 </div>
@@ -1014,19 +716,14 @@ header{
 
 <div class="infoGrid">
 
-
 <div class="infoBox">
 
   <span>
-
     PRICE
-
   </span>
 
   <b id="price">
-
     --
-
   </b>
 
 </div>
@@ -1035,15 +732,11 @@ header{
 <div class="infoBox">
 
   <span>
-
     RSI 14
-
   </span>
 
   <b id="rsi">
-
     --
-
   </b>
 
 </div>
@@ -1052,15 +745,11 @@ header{
 <div class="infoBox">
 
   <span>
-
     EMA 5
-
   </span>
 
   <b id="emaFast">
-
     --
-
   </b>
 
 </div>
@@ -1069,22 +758,16 @@ header{
 <div class="infoBox">
 
   <span>
-
     EMA 13
-
   </span>
 
   <b id="emaSlow">
-
     --
-
   </b>
 
 </div>
 
-
 </div>
-
 
 </div>
 
@@ -1092,13 +775,48 @@ header{
 
 <div class="card">
 
-
 <div class="title">
+  NOTIFICATIONS
+</div>
 
-  POCKET MODE
+<p class="note">
+
+  Enable notifications to receive
+  CALL / PUT signals and
+  WIN / LOST / DRAW results.
+
+</p>
+
+<button
+  id="enableNotifications"
+  class="btn notificationBtn"
+>
+  🔔 ENABLE NOTIFICATIONS
+</button>
+
+<button
+  id="testNotification"
+  class="btn testBtn"
+>
+  🔔 TEST NOTIFICATION
+</button>
+
+<div
+  id="notificationStatus"
+  class="notificationStatus"
+>
+  Checking notification status...
+</div>
 
 </div>
 
+
+
+<div class="card">
+
+<div class="title">
+  POCKET MODE
+</div>
 
 <p class="note">
 
@@ -1108,9 +826,7 @@ header{
 
 </p>
 
-
 <br>
-
 
 <p class="note">
 
@@ -1120,9 +836,7 @@ header{
 
 </p>
 
-
 <br>
-
 
 <p class="note">
 
@@ -1132,134 +846,54 @@ header{
 
 </p>
 
-
 </div>
 
 
 
 <div class="card">
 
-
 <div class="title">
-
   DEMO RESULTS
+</div>
+
+<div class="stats">
+
+<div class="stat">
+  <b id="wins">0</b>
+  <span>WINS</span>
+</div>
+
+<div class="stat">
+  <b id="losses">0</b>
+  <span>LOSSES</span>
+</div>
+
+<div class="stat">
+  <b id="openCount">0</b>
+  <span>OPEN</span>
+</div>
 
 </div>
 
 
 <div class="stats">
 
+<div class="stat">
+  <b id="winrate">0%</b>
+  <span>WIN RATE</span>
+</div>
 
 <div class="stat">
-
-  <b id="wins">
-
-    0
-
-  </b>
-
-  <span>
-
-    WINS
-
-  </span>
-
+  <b id="draws">0</b>
+  <span>DRAWS</span>
 </div>
-
 
 <div class="stat">
-
-  <b id="losses">
-
-    0
-
-  </b>
-
-  <span>
-
-    LOSSES
-
-  </span>
-
+  <b id="tradesCount">0</b>
+  <span>HISTORY</span>
 </div>
 
-
-<div class="stat">
-
-  <b id="openCount">
-
-    0
-
-  </b>
-
-  <span>
-
-    OPEN
-
-  </span>
-
 </div>
-
-
-</div>
-
-
-<div class="stats">
-
-
-<div class="stat">
-
-  <b id="winrate">
-
-    0%
-
-  </b>
-
-  <span>
-
-    WIN RATE
-
-  </span>
-
-</div>
-
-
-<div class="stat">
-
-  <b id="draws">
-
-    0
-
-  </b>
-
-  <span>
-
-    DRAWS
-
-  </span>
-
-</div>
-
-
-<div class="stat">
-
-  <b id="tradesCount">
-
-    0
-
-  </b>
-
-  <span>
-
-    HISTORY
-
-  </span>
-
-</div>
-
-
-</div>
-
 
 </div>
 
@@ -1270,26 +904,17 @@ header{
   class="card"
 >
 
-
 <div class="title">
-
   OPEN DEMO TRADES
-
 </div>
-
 
 <div id="openTrades">
 
-
 <div class="empty">
-
   No open trades.
-
 </div>
 
-
 </div>
-
 
 </div>
 
@@ -1303,32 +928,21 @@ header{
   class="screen"
 >
 
-
 <div class="card">
 
-
 <div class="title">
-
   DEMO TRADE HISTORY
-
 </div>
-
 
 <div id="history">
 
-
 <div class="empty">
-
   Loading...
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
 
 </section>
 
@@ -1339,26 +953,17 @@ header{
   class="screen"
 >
 
-
 <div class="card">
 
-
 <div class="title">
-
   INFORMATION
-
 </div>
 
-
 <p class="note">
-
   Market data is supplied by Twelve Data.
-
 </p>
 
-
 <br>
-
 
 <p class="note">
 
@@ -1368,9 +973,7 @@ header{
 
 </p>
 
-
 <br>
-
 
 <p class="note">
 
@@ -1380,9 +983,7 @@ header{
 
 </p>
 
-
 <br>
-
 
 <p class="note">
 
@@ -1391,12 +992,9 @@ header{
 
 </p>
 
-
 </div>
 
-
 </section>
-
 
 </div>
 
@@ -1404,42 +1002,30 @@ header{
 
 <div class="bottom">
 
-
 <div class="bottomInner">
-
 
 <button
   class="nav active"
   data-screen="tradeScreen"
 >
-
   TRADE
-
 </button>
-
 
 <button
   class="nav"
   data-screen="historyScreen"
 >
-
   HISTORY
-
 </button>
-
 
 <button
   class="nav"
   data-screen="settingsScreen"
 >
-
   SETTINGS
-
 </button>
 
-
 </div>
-
 
 </div>
 
@@ -1452,9 +1038,465 @@ header{
    SERVER
 ================================= */
 
-
 const SERVER_URL =
   "https://adams-option-server.onrender.com";
+
+
+/* =================================
+   ONESIGNAL
+================================= */
+
+const ONESIGNAL_APP_ID =
+  "cda9b6dc-b0a8-4171-8e7d-c47bd35b6ba0";
+
+let OneSignalClient = null;
+let oneSignalReady = false;
+
+
+window.OneSignalDeferred =
+  window.OneSignalDeferred || [];
+
+
+OneSignalDeferred.push(
+  async function(OneSignal){
+
+    try{
+
+      OneSignalClient =
+        OneSignal;
+
+
+      await OneSignal.init({
+
+        appId:
+          ONESIGNAL_APP_ID,
+
+        autoResubscribe:
+          true
+
+      });
+
+
+      oneSignalReady =
+        true;
+
+
+      OneSignal.User
+        .PushSubscription
+        .addEventListener(
+          "change",
+          function(){
+
+            updateNotificationStatus();
+
+          }
+        );
+
+
+      await updateNotificationStatus();
+
+
+    }catch(error){
+
+      console.error(
+        "OneSignal init:",
+        error
+      );
+
+
+      document.getElementById(
+        "notificationStatus"
+      ).textContent =
+        "OneSignal error: " +
+        (
+          error.message ||
+          "initialisation failed"
+        );
+    }
+
+  }
+);
+
+
+
+async function updateNotificationStatus(){
+
+  const button =
+    document.getElementById(
+      "enableNotifications"
+    );
+
+
+  const status =
+    document.getElementById(
+      "notificationStatus"
+    );
+
+
+  if(
+    !oneSignalReady ||
+    !OneSignalClient
+  ){
+
+    status.textContent =
+      "Loading notification service...";
+
+
+    return;
+  }
+
+
+  try{
+
+    const supported =
+      OneSignalClient
+        .Notifications
+        .isPushSupported();
+
+
+    if(!supported){
+
+      button.textContent =
+        "NOTIFICATIONS NOT SUPPORTED";
+
+
+      button.className =
+        "btn notificationBlocked";
+
+
+      status.textContent =
+        "This browser does not support web push.";
+
+
+      return;
+    }
+
+
+    const permission =
+      OneSignalClient
+        .Notifications
+        .permission;
+
+
+    const optedIn =
+      OneSignalClient
+        .User
+        .PushSubscription
+        .optedIn;
+
+
+    const subscriptionId =
+      OneSignalClient
+        .User
+        .PushSubscription
+        .id;
+
+
+    if(
+      permission &&
+      optedIn &&
+      subscriptionId
+    ){
+
+      button.textContent =
+        "✅ NOTIFICATIONS ON";
+
+
+      button.className =
+        "btn notificationOn";
+
+
+      status.textContent =
+        "Subscribed • ready for CALL / PUT and trade results.";
+
+
+      return;
+    }
+
+
+    if(
+      Notification.permission ===
+      "denied"
+    ){
+
+      button.textContent =
+        "❌ NOTIFICATIONS BLOCKED";
+
+
+      button.className =
+        "btn notificationBlocked";
+
+
+      status.textContent =
+        "Notifications are blocked in Chrome. Open Site settings → Notifications → Allow.";
+
+
+      return;
+    }
+
+
+    button.textContent =
+      "🔔 ENABLE NOTIFICATIONS";
+
+
+    button.className =
+      "btn notificationBtn";
+
+
+    status.textContent =
+      "Tap ENABLE NOTIFICATIONS and press Allow.";
+
+  }catch(error){
+
+    console.error(
+      "Notification status:",
+      error
+    );
+
+
+    status.textContent =
+      "Notification status error: " +
+      error.message;
+  }
+}
+
+
+
+async function enableNotifications(){
+
+  const status =
+    document.getElementById(
+      "notificationStatus"
+    );
+
+
+  if(
+    !oneSignalReady ||
+    !OneSignalClient
+  ){
+
+    status.textContent =
+      "Notification service is still loading...";
+
+
+    return;
+  }
+
+
+  try{
+
+    status.textContent =
+      "Requesting notification permission...";
+
+
+    const supported =
+      OneSignalClient
+        .Notifications
+        .isPushSupported();
+
+
+    if(!supported){
+
+      status.textContent =
+        "This browser does not support push notifications.";
+
+
+      return;
+    }
+
+
+    await OneSignalClient
+      .Notifications
+      .requestPermission();
+
+
+    if(
+      !OneSignalClient
+        .Notifications
+        .permission
+    ){
+
+      status.textContent =
+        "Permission was not granted. In Chrome open Site settings → Notifications → Allow.";
+
+
+      await updateNotificationStatus();
+
+
+      return;
+    }
+
+
+    await OneSignalClient
+      .User
+      .PushSubscription
+      .optIn();
+
+
+    status.textContent =
+      "Registering this phone...";
+
+
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          1800
+        )
+    );
+
+
+    await updateNotificationStatus();
+
+
+  }catch(error){
+
+    console.error(
+      "Enable notifications:",
+      error
+    );
+
+
+    status.textContent =
+      "Notification error: " +
+      (
+        error.message ||
+        "unknown error"
+      );
+  }
+}
+
+
+
+async function testNotification(){
+
+  const button =
+    document.getElementById(
+      "testNotification"
+    );
+
+
+  const status =
+    document.getElementById(
+      "notificationStatus"
+    );
+
+
+  try{
+
+    button.disabled =
+      true;
+
+
+    if(
+      !oneSignalReady ||
+      !OneSignalClient
+    ){
+
+      throw new Error(
+        "OneSignal is not ready"
+      );
+    }
+
+
+    const permission =
+      OneSignalClient
+        .Notifications
+        .permission;
+
+
+    const optedIn =
+      OneSignalClient
+        .User
+        .PushSubscription
+        .optedIn;
+
+
+    const subscriptionId =
+      OneSignalClient
+        .User
+        .PushSubscription
+        .id;
+
+
+    if(
+      !permission ||
+      !optedIn ||
+      !subscriptionId
+    ){
+
+      status.textContent =
+        "First press ENABLE NOTIFICATIONS.";
+
+
+      return;
+    }
+
+
+    status.textContent =
+      "Sending test notification...";
+
+
+    const response =
+      await fetch(
+        SERVER_URL +
+        "/api/test-notification",
+        {
+          cache:
+            "no-store"
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    console.log(
+      "Test notification:",
+      data
+    );
+
+
+    if(
+      !response.ok ||
+      data.ok === false
+    ){
+
+      throw new Error(
+        data.error ||
+        data.body ||
+        "Push test failed"
+      );
+    }
+
+
+    status.textContent =
+      "✅ Test sent. Check your phone notifications.";
+
+
+  }catch(error){
+
+    console.error(
+      "Test notification:",
+      error
+    );
+
+
+    status.textContent =
+      "Test error: " +
+      (
+        error.message ||
+        "unknown error"
+      );
+
+
+  }finally{
+
+    button.disabled =
+      false;
+  }
+}
 
 
 
@@ -1962,7 +2004,8 @@ function renderIndicators(
   ).textContent =
     formatPrice(
       pair,
-      data.emaFast
+      data.emaFast ??
+      data.ema5
     );
 
 
@@ -1971,7 +2014,8 @@ function renderIndicators(
   ).textContent =
     formatPrice(
       pair,
-      data.emaSlow
+      data.emaSlow ??
+      data.ema13
     );
 }
 
@@ -1991,7 +2035,6 @@ function updatePocketButton(){
 
 
   if(!btn){
-
     return;
   }
 
@@ -2057,6 +2100,7 @@ function applySignalData(
 
   currentSignal =
     data.side ||
+    data.direction ||
     "WAIT";
 
 
@@ -2093,14 +2137,11 @@ function applySignalData(
 
   updateSelectedInfo();
 
-
   renderSignal();
-
 
   renderIndicators(
     data
   );
-
 
   updatePocketButton();
 
@@ -2124,7 +2165,7 @@ function applySignalData(
 
 
 /* =================================
-   ANALYSE SELECTED PAIR
+   ANALYSE
 ================================= */
 
 
@@ -2239,7 +2280,7 @@ async function analyseMarket(){
 
 
 /* =================================
-   AUTO SCAN 8 PAIRS
+   AUTO SCAN
 ================================= */
 
 
@@ -2395,12 +2436,9 @@ document
 
           highlightPair();
 
-
           updateSelectedInfo();
 
-
           renderSignal();
-
 
           updatePocketButton();
 
@@ -2469,12 +2507,9 @@ document
 
           highlightTimeframe();
 
-
           updateSelectedInfo();
 
-
           renderSignal();
-
 
           updatePocketButton();
 
@@ -2513,7 +2548,6 @@ async function loadStats(){
     if(
       !response.ok
     ){
-
       return;
     }
 
@@ -2628,8 +2662,7 @@ async function loadOpenTrades(){
 
 
     if(
-      trades.length ===
-      0
+      trades.length === 0
     ){
 
       box.innerHTML =
@@ -2705,83 +2738,60 @@ function renderOpenTrades(){
             <div class="tradeTop">
 
               <strong>
-
                 ${escapeHtml(
                   trade.pair
                 )}
-
                 •
-
                 ${escapeHtml(
                   trade.timeframe
                 )}
-
               </strong>
-
 
               <span
                 class="badge ${directionClass}"
               >
-
                 ${escapeHtml(
                   trade.direction
                 )}
-
               </span>
 
             </div>
 
-
             <div class="row">
 
               <span>
-
                 Confidence
-
               </span>
 
-
               <strong>
-
                 ${Number(
                   trade.confidence ||
                   0
                 )}%
-
               </strong>
 
             </div>
 
-
             <div class="row">
 
               <span>
-
                 Entry
-
               </span>
 
-
               <strong>
-
                 ${formatPrice(
                   trade.pair,
                   trade.entry
                 )}
-
               </strong>
 
             </div>
 
-
             <div class="row">
 
               <span>
-
                 Time remaining
-
               </span>
-
 
               <strong
                 class="tradeCountdown"
@@ -2852,17 +2862,21 @@ function updateCountdowns(){
 
 
 /* =================================
-   CHECK EXPIRED TRADES
+   EXPIRED TRADES
 ================================= */
+
+
+let expiryRefreshBusy =
+  false;
 
 
 async function checkExpiredTrades(){
 
   if(
+    expiryRefreshBusy ||
     openTradesCache.length ===
     0
   ){
-
     return;
   }
 
@@ -2881,36 +2895,31 @@ async function checkExpiredTrades(){
     );
 
 
-  if(
-    !expired
-  ){
-
+  if(!expired){
     return;
   }
 
 
-  try{
-
-    await fetch(
-      SERVER_URL +
-      "/api/check-trades",
-      {
-        cache:
-          "no-store"
-      }
-    );
+  expiryRefreshBusy =
+    true;
 
 
-    await refreshEverything();
+  /*
+    Server closes trades automatically.
+    Wait a little, then refresh UI.
+  */
 
+  setTimeout(
+    async () => {
 
-  }catch(error){
+      await refreshEverything();
 
-    console.error(
-      "Check trade:",
-      error
-    );
-  }
+      expiryRefreshBusy =
+        false;
+
+    },
+    3000
+  );
 }
 
 
@@ -2989,8 +2998,12 @@ async function loadHistory(){
 
                 ? "win"
 
-                : t.result ===
-                  "LOST"
+                : (
+                    t.result ===
+                    "LOST" ||
+                    t.result ===
+                    "LOSS"
+                  )
 
                   ? "loss"
 
@@ -3036,11 +3049,9 @@ async function loadHistory(){
               <div>
 
                 <strong>
-
                   ${escapeHtml(
                     t.pair
                   )}
-
                 </strong>
 
                 <br>
@@ -3051,15 +3062,12 @@ async function loadHistory(){
                     font-size:9px
                   "
                 >
-
                   ${escapeHtml(
                     time
                   )}
-
                 </span>
 
               </div>
-
 
               <div
                 class="${directionClass}"
@@ -3077,15 +3085,12 @@ async function loadHistory(){
                     color:#829087
                   "
                 >
-
                   ${escapeHtml(
                     t.timeframe
                   )}
-
                 </span>
 
               </div>
-
 
               <div>
 
@@ -3111,15 +3116,12 @@ async function loadHistory(){
 
               </div>
 
-
               <div
                 class="${cls}"
               >
-
                 ${escapeHtml(
                   t.result
                 )}
-
               </div>
 
             </div>
@@ -3245,6 +3247,18 @@ document.getElementById(
   autoScan;
 
 
+document.getElementById(
+  "enableNotifications"
+).onclick =
+  enableNotifications;
+
+
+document.getElementById(
+  "testNotification"
+).onclick =
+  testNotification;
+
+
 
 /* =================================
    START
@@ -3253,21 +3267,15 @@ document.getElementById(
 
 renderSignal();
 
-
 highlightPair();
-
 
 highlightTimeframe();
 
-
 updateSelectedInfo();
-
 
 updatePocketButton();
 
-
 checkServer();
-
 
 refreshEverything();
 
@@ -3296,6 +3304,7 @@ setInterval(
     await loadStats();
 
     await loadOpenTrades();
+
   },
   15000
 );
@@ -3312,4 +3321,4 @@ setInterval(
 
 </body>
 
-  </html>
+    </html>
