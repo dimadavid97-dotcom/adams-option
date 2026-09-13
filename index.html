@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -37,6 +38,7 @@
 }
 
 body{
+
   background:
     radial-gradient(
       circle at 50% -10%,
@@ -58,27 +60,41 @@ body{
 }
 
 header{
-  padding:18px 16px 10px;
+
+  padding:
+    18px 16px 10px;
+
   text-align:center;
 }
 
 .logo{
+
   font-size:28px;
+
   font-weight:900;
+
   letter-spacing:2px;
+
   color:var(--gold);
 }
 
 .subtitle{
+
   color:var(--muted);
+
   font-size:12px;
+
   margin-top:5px;
 }
 
 .status{
+
   display:inline-block;
+
   margin-top:10px;
-  padding:6px 12px;
+
+  padding:
+    6px 12px;
 
   border:
     1px solid var(--gold);
@@ -88,26 +104,40 @@ header{
   border-radius:30px;
 
   font-size:11px;
+
   font-weight:bold;
 }
 
 .status.online{
-  border-color:var(--green);
-  color:var(--green);
+
+  border-color:
+    var(--green);
+
+  color:
+    var(--green);
 }
 
 .status.offline{
-  border-color:var(--red);
-  color:var(--red);
+
+  border-color:
+    var(--red);
+
+  color:
+    var(--red);
 }
 
 .container{
+
   max-width:700px;
+
   margin:auto;
-  padding:10px 14px;
+
+  padding:
+    10px 14px;
 }
 
 .card{
+
   background:
     linear-gradient(
       145deg,
@@ -126,26 +156,37 @@ header{
 }
 
 .title{
+
   font-size:13px;
+
   font-weight:bold;
+
   color:var(--gold);
+
   margin-bottom:12px;
+
   letter-spacing:.7px;
 }
 
 .assetButtons{
+
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+    repeat(2,1fr);
+
   gap:8px;
 }
 
 .asset{
+
   background:#09110e;
 
   border:
     1px solid var(--line);
 
-  padding:11px 5px;
+  padding:
+    11px 5px;
 
   color:white;
 
@@ -155,17 +196,25 @@ header{
 }
 
 .asset.active{
-  border-color:var(--gold);
-  color:var(--gold);
+
+  border-color:
+    var(--gold);
+
+  color:
+    var(--gold);
 }
 
 .tfrow{
+
   display:flex;
+
   gap:7px;
+
   margin-top:10px;
 }
 
 .tf{
+
   flex:1;
 
   background:#08100d;
@@ -181,39 +230,56 @@ header{
 }
 
 .tf.active{
+
   color:var(--gold);
-  border-color:var(--gold);
+
+  border-color:
+    var(--gold);
 }
 
 .signalBox{
+
   text-align:center;
 }
 
 .signal{
+
   font-size:42px;
+
   font-weight:900;
+
   margin-bottom:5px;
 }
 
 .call{
-  color:var(--green);
+
+  color:
+    var(--green);
 }
 
 .put{
-  color:var(--red);
+
+  color:
+    var(--red);
 }
 
 .wait{
-  color:var(--gold);
+
+  color:
+    var(--gold);
 }
 
 .confidence{
+
   font-size:15px;
+
   color:#bbb;
 }
 
 .bar{
+
   height:9px;
+
   background:#17211d;
 
   margin-top:12px;
@@ -224,15 +290,19 @@ header{
 }
 
 .barfill{
+
   height:100%;
+
   width:0%;
 
-  background:var(--green);
+  background:
+    var(--green);
 
   transition:.4s;
 }
 
 .btn{
+
   width:100%;
 
   border:none;
@@ -251,27 +321,81 @@ header{
 }
 
 .btn:disabled{
+
   opacity:.55;
 }
 
 .analyse{
-  background:var(--gold);
+
+  background:
+    var(--gold);
+
   color:#111;
 }
 
 .autoScan{
-  background:var(--green);
+
+  background:
+    var(--green);
+
   color:#00190f;
 }
 
+.pocketBtn{
+
+  display:block;
+
+  text-decoration:none;
+
+  text-align:center;
+
+  background:#151b18;
+
+  color:
+    var(--gold);
+
+  border:
+    1px solid var(--gold);
+}
+
+.pocketBtn.callPocket{
+
+  border-color:
+    var(--green);
+
+  color:
+    var(--green);
+
+  background:
+    rgba(0,229,139,.08);
+}
+
+.pocketBtn.putPocket{
+
+  border-color:
+    var(--red);
+
+  color:
+    var(--red);
+
+  background:
+    rgba(255,78,99,.08);
+}
+
 .stats{
+
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:8px;
+
   margin-top:10px;
 }
 
 .stat{
+
   background:#07100c;
 
   border:
@@ -279,30 +403,43 @@ header{
 
   border-radius:12px;
 
-  padding:11px 5px;
+  padding:
+    11px 5px;
 
   text-align:center;
 }
 
 .stat b{
+
   display:block;
+
   font-size:17px;
+
   margin-bottom:3px;
 }
 
 .stat span{
-  color:var(--muted);
+
+  color:
+    var(--muted);
+
   font-size:10px;
 }
 
 .infoGrid{
+
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+    repeat(2,1fr);
+
   gap:8px;
+
   margin-top:12px;
 }
 
 .infoBox{
+
   background:#07100c;
 
   border:
@@ -316,9 +453,11 @@ header{
 }
 
 .infoBox span{
+
   display:block;
 
-  color:var(--muted);
+  color:
+    var(--muted);
 
   font-size:10px;
 
@@ -326,10 +465,12 @@ header{
 }
 
 .infoBox b{
+
   font-size:14px;
 }
 
 .tradeItem{
+
   background:#07100c;
 
   border:
@@ -344,9 +485,11 @@ header{
 
 .tradeTop,
 .row{
+
   display:flex;
 
-  justify-content:space-between;
+  justify-content:
+    space-between;
 
   align-items:center;
 
@@ -356,7 +499,9 @@ header{
 }
 
 .badge{
-  padding:5px 9px;
+
+  padding:
+    5px 9px;
 
   border-radius:20px;
 
@@ -366,6 +511,7 @@ header{
 }
 
 .badge.call{
+
   background:
     rgba(0,229,139,.12);
 
@@ -374,6 +520,7 @@ header{
 }
 
 .badge.put{
+
   background:
     rgba(255,78,99,.12);
 
@@ -382,6 +529,7 @@ header{
 }
 
 .historyItem{
+
   display:grid;
 
   grid-template-columns:
@@ -389,7 +537,8 @@ header{
 
   gap:5px;
 
-  padding:10px 0;
+  padding:
+    10px 0;
 
   border-bottom:
     1px solid #17241e;
@@ -398,58 +547,115 @@ header{
 }
 
 .win{
-  color:var(--green);
+
+  color:
+    var(--green);
+
   font-weight:bold;
 }
 
 .loss{
-  color:var(--red);
+
+  color:
+    var(--red);
+
   font-weight:bold;
 }
 
 .draw{
-  color:var(--gold);
+
+  color:
+    var(--gold);
+
   font-weight:bold;
 }
 
 .empty{
+
   text-align:center;
 
   padding:20px;
 
-  color:var(--muted);
+  color:
+    var(--muted);
 }
 
 .note,
 .miniStatus{
+
   font-size:11px;
 
-  color:var(--muted);
+  color:
+    var(--muted);
 
   line-height:1.5;
 }
 
 .miniStatus{
+
   margin-top:10px;
+
   text-align:center;
 }
 
 .selectedInfo{
+
   margin-top:9px;
 
   text-align:center;
 
-  color:var(--gold);
+  color:
+    var(--gold);
 
   font-size:12px;
 
   font-weight:bold;
 }
 
+.expiryBig{
+
+  margin-top:12px;
+
+  padding:11px;
+
+  border-radius:12px;
+
+  background:#07100c;
+
+  border:
+    1px solid var(--line);
+
+  text-align:center;
+}
+
+.expiryBig span{
+
+  display:block;
+
+  color:
+    var(--muted);
+
+  font-size:10px;
+}
+
+.expiryBig b{
+
+  display:block;
+
+  margin-top:4px;
+
+  font-size:22px;
+
+  color:
+    var(--gold);
+}
+
 .bottom{
+
   position:fixed;
 
   bottom:0;
+
   left:0;
 
   width:100%;
@@ -460,10 +666,12 @@ header{
   border-top:
     1px solid var(--line);
 
-  padding:9px 12px;
+  padding:
+    9px 12px;
 }
 
 .bottomInner{
+
   max-width:700px;
 
   margin:auto;
@@ -475,6 +683,7 @@ header{
 }
 
 .nav{
+
   background:none;
 
   border:none;
@@ -485,57 +694,68 @@ header{
 }
 
 .nav.active{
-  color:var(--gold);
+
+  color:
+    var(--gold);
 }
 
 .screen{
+
   display:none;
 }
 
 .screen.active{
+
   display:block;
 }
 
 @media(min-width:600px){
 
   .assetButtons{
+
     grid-template-columns:
       repeat(4,1fr);
   }
-
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-  <div class="logo">
-    ADAMS OPTION
-  </div>
+<div class="logo">
 
-  <div class="subtitle">
-    FOREX REAL DATA • POCKET MODE • DEMO
-  </div>
+  ADAMS OPTION
 
-  <div
-    id="serverStatus"
-    class="status"
-  >
-    CHECKING SERVER...
-  </div>
+</div>
+
+
+<div class="subtitle">
+
+  FOREX REAL DATA • POCKET MODE • DEMO
+
+</div>
+
+
+<div
+  id="serverStatus"
+  class="status"
+>
+
+  CHECKING SERVER...
+
+</div>
 
 </header>
 
 
 <div class="container">
 
-
-<!-- ==================================
-     TRADE
-=================================== -->
 
 <section
   id="tradeScreen"
@@ -545,376 +765,531 @@ header{
 
 <div class="card">
 
-  <div class="title">
-    FOREX PAIRS
-  </div>
 
+<div class="title">
 
-  <div class="assetButtons">
-
-    <button
-      class="asset active"
-      data-pair="EUR/USD"
-    >
-      EUR/USD
-    </button>
-
-    <button
-      class="asset"
-      data-pair="GBP/USD"
-    >
-      GBP/USD
-    </button>
-
-    <button
-      class="asset"
-      data-pair="EUR/GBP"
-    >
-      EUR/GBP
-    </button>
-
-    <button
-      class="asset"
-      data-pair="USD/JPY"
-    >
-      USD/JPY
-    </button>
-
-    <button
-      class="asset"
-      data-pair="AUD/USD"
-    >
-      AUD/USD
-    </button>
-
-    <button
-      class="asset"
-      data-pair="USD/CAD"
-    >
-      USD/CAD
-    </button>
-
-    <button
-      class="asset"
-      data-pair="USD/CHF"
-    >
-      USD/CHF
-    </button>
-
-    <button
-      class="asset"
-      data-pair="NZD/USD"
-    >
-      NZD/USD
-    </button>
-
-  </div>
-
-
-  <div class="tfrow">
-
-    <button
-      class="tf active"
-      data-tf="M1"
-    >
-      M1
-    </button>
-
-    <button
-      class="tf"
-      data-tf="M5"
-    >
-      M5
-    </button>
-
-    <button
-      class="tf"
-      data-tf="M15"
-    >
-      M15
-    </button>
-
-  </div>
+  FOREX PAIRS
 
 </div>
 
 
-<!-- SIGNAL -->
+<div class="assetButtons">
+
+
+<button
+  class="asset active"
+  data-pair="EUR/USD"
+>
+
+  EUR/USD
+
+</button>
+
+
+<button
+  class="asset"
+  data-pair="GBP/USD"
+>
+
+  GBP/USD
+
+</button>
+
+
+<button
+  class="asset"
+  data-pair="EUR/GBP"
+>
+
+  EUR/GBP
+
+</button>
+
+
+<button
+  class="asset"
+  data-pair="USD/JPY"
+>
+
+  USD/JPY
+
+</button>
+
+
+<button
+  class="asset"
+  data-pair="AUD/USD"
+>
+
+  AUD/USD
+
+</button>
+
+
+<button
+  class="asset"
+  data-pair="USD/CAD"
+>
+
+  USD/CAD
+
+</button>
+
+
+<button
+  class="asset"
+  data-pair="USD/CHF"
+>
+
+  USD/CHF
+
+</button>
+
+
+<button
+  class="asset"
+  data-pair="NZD/USD"
+>
+
+  NZD/USD
+
+</button>
+
+
+</div>
+
+
+<div class="tfrow">
+
+
+<button
+  class="tf active"
+  data-tf="M1"
+>
+
+  M1
+
+</button>
+
+
+<button
+  class="tf"
+  data-tf="M5"
+>
+
+  M5
+
+</button>
+
+
+<button
+  class="tf"
+  data-tf="M15"
+>
+
+  M15
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
 
 <div class="card signalBox">
 
-  <div class="title">
-    CURRENT MARKET SIGNAL
-  </div>
 
+<div class="title">
 
-  <div
-    id="signal"
-    class="signal wait"
-  >
-    WAIT
-  </div>
-
-
-  <div class="confidence">
-
-    Confidence:
-
-    <strong id="confidence">
-      0%
-    </strong>
-
-  </div>
-
-
-  <div class="bar">
-
-    <div
-      id="barfill"
-      class="barfill"
-    ></div>
-
-  </div>
-
-
-  <div
-    id="selectedInfo"
-    class="selectedInfo"
-  >
-    EUR/USD • M1
-  </div>
-
-
-  <button
-    id="analyseBtn"
-    class="btn analyse"
-  >
-    ANALYSE SELECTED PAIR
-  </button>
-
-
-  <button
-    id="autoScanBtn"
-    class="btn autoScan"
-  >
-    AUTO SCAN 8 PAIRS
-  </button>
-
-
-  <div
-    id="engineStatus"
-    class="miniStatus"
-  >
-    Ready
-  </div>
-
-
-  <div class="infoGrid">
-
-
-    <div class="infoBox">
-
-      <span>
-        PRICE
-      </span>
-
-      <b id="price">
-        --
-      </b>
-
-    </div>
-
-
-    <div class="infoBox">
-
-      <span>
-        RSI 14
-      </span>
-
-      <b id="rsi">
-        --
-      </b>
-
-    </div>
-
-
-    <div class="infoBox">
-
-      <span>
-        EMA 5
-      </span>
-
-      <b id="emaFast">
-        --
-      </b>
-
-    </div>
-
-
-    <div class="infoBox">
-
-      <span>
-        EMA 13
-      </span>
-
-      <b id="emaSlow">
-        --
-      </b>
-
-    </div>
-
-
-  </div>
+  CURRENT MARKET SIGNAL
 
 </div>
 
 
-<!-- AUTO SCAN -->
+<div
+  id="signal"
+  class="signal wait"
+>
+
+  WAIT
+
+</div>
+
+
+<div class="confidence">
+
+  Confidence:
+
+  <strong id="confidence">
+
+    0%
+
+  </strong>
+
+</div>
+
+
+<div class="bar">
+
+<div
+  id="barfill"
+  class="barfill"
+></div>
+
+</div>
+
+
+<div
+  id="selectedInfo"
+  class="selectedInfo"
+>
+
+  EUR/USD • M1
+
+</div>
+
+
+<button
+  id="analyseBtn"
+  class="btn analyse"
+>
+
+  ANALYSE SELECTED PAIR
+
+</button>
+
+
+<button
+  id="autoScanBtn"
+  class="btn autoScan"
+>
+
+  AUTO SCAN 8 PAIRS
+
+</button>
+
+
+<a
+  id="pocketBtn"
+  href="https://pocketoption.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="btn pocketBtn"
+>
+
+  OPEN POCKET OPTION
+
+</a>
+
+
+<div
+  id="engineStatus"
+  class="miniStatus"
+>
+
+  Ready
+
+</div>
+
+
+<div class="expiryBig">
+
+  <span>
+
+    EXPIRY
+
+  </span>
+
+  <b id="expiryDisplay">
+
+    M1 • 01:00
+
+  </b>
+
+</div>
+
+
+<div class="infoGrid">
+
+
+<div class="infoBox">
+
+  <span>
+
+    PRICE
+
+  </span>
+
+  <b id="price">
+
+    --
+
+  </b>
+
+</div>
+
+
+<div class="infoBox">
+
+  <span>
+
+    RSI 14
+
+  </span>
+
+  <b id="rsi">
+
+    --
+
+  </b>
+
+</div>
+
+
+<div class="infoBox">
+
+  <span>
+
+    EMA 5
+
+  </span>
+
+  <b id="emaFast">
+
+    --
+
+  </b>
+
+</div>
+
+
+<div class="infoBox">
+
+  <span>
+
+    EMA 13
+
+  </span>
+
+  <b id="emaSlow">
+
+    --
+
+  </b>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
 
 <div class="card">
 
-  <div class="title">
-    POCKET MODE
-  </div>
 
-  <p class="note">
+<div class="title">
 
-    AUTO SCAN analyses all 8 forex
-    pairs and selects the strongest
-    confirmed CALL or PUT signal.
-
-  </p>
-
-  <br>
-
-  <p class="note">
-
-    Trades are tracked as DEMO only.
-    You decide manually whether to use
-    the signal in Pocket Option.
-
-  </p>
+  POCKET MODE
 
 </div>
 
 
-<!-- STATS -->
+<p class="note">
+
+  AUTO SCAN analyses all 8 forex
+  pairs and selects the strongest
+  confirmed CALL or PUT signal.
+
+</p>
+
+
+<br>
+
+
+<p class="note">
+
+  When a signal appears, use the
+  OPEN POCKET OPTION button and
+  enter the trade manually.
+
+</p>
+
+
+<br>
+
+
+<p class="note">
+
+  ADAMS OPTION tracks the result
+  as a DEMO trade and records
+  WIN / LOST / DRAW.
+
+</p>
+
+
+</div>
+
+
 
 <div class="card">
 
-  <div class="title">
-    DEMO RESULTS
-  </div>
 
+<div class="title">
 
-  <div class="stats">
-
-    <div class="stat">
-
-      <b id="wins">
-        0
-      </b>
-
-      <span>
-        WINS
-      </span>
-
-    </div>
-
-
-    <div class="stat">
-
-      <b id="losses">
-        0
-      </b>
-
-      <span>
-        LOSSES
-      </span>
-
-    </div>
-
-
-    <div class="stat">
-
-      <b id="openCount">
-        0
-      </b>
-
-      <span>
-        OPEN
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="stats">
-
-
-    <div class="stat">
-
-      <b id="winrate">
-        0%
-      </b>
-
-      <span>
-        WIN RATE
-      </span>
-
-    </div>
-
-
-    <div class="stat">
-
-      <b id="draws">
-        0
-      </b>
-
-      <span>
-        DRAWS
-      </span>
-
-    </div>
-
-
-    <div class="stat">
-
-      <b id="tradesCount">
-        0
-      </b>
-
-      <span>
-        HISTORY
-      </span>
-
-    </div>
-
-
-  </div>
+  DEMO RESULTS
 
 </div>
 
 
-<!-- OPEN TRADES -->
+<div class="stats">
+
+
+<div class="stat">
+
+  <b id="wins">
+
+    0
+
+  </b>
+
+  <span>
+
+    WINS
+
+  </span>
+
+</div>
+
+
+<div class="stat">
+
+  <b id="losses">
+
+    0
+
+  </b>
+
+  <span>
+
+    LOSSES
+
+  </span>
+
+</div>
+
+
+<div class="stat">
+
+  <b id="openCount">
+
+    0
+
+  </b>
+
+  <span>
+
+    OPEN
+
+  </span>
+
+</div>
+
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+  <b id="winrate">
+
+    0%
+
+  </b>
+
+  <span>
+
+    WIN RATE
+
+  </span>
+
+</div>
+
+
+<div class="stat">
+
+  <b id="draws">
+
+    0
+
+  </b>
+
+  <span>
+
+    DRAWS
+
+  </span>
+
+</div>
+
+
+<div class="stat">
+
+  <b id="tradesCount">
+
+    0
+
+  </b>
+
+  <span>
+
+    HISTORY
+
+  </span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
 
 <div
   id="openTradesCard"
   class="card"
 >
 
-  <div class="title">
-    OPEN DEMO TRADES
-  </div>
 
-  <div id="openTrades">
+<div class="title">
 
-    <div class="empty">
-      No open trades.
-    </div>
+  OPEN DEMO TRADES
 
-  </div>
+</div>
+
+
+<div id="openTrades">
+
+
+<div class="empty">
+
+  No open trades.
+
+</div>
+
+
+</div>
+
 
 </div>
 
@@ -922,78 +1297,103 @@ header{
 </section>
 
 
-<!-- ==================================
-     HISTORY
-=================================== -->
 
 <section
   id="historyScreen"
   class="screen"
 >
 
+
 <div class="card">
 
-  <div class="title">
-    DEMO TRADE HISTORY
-  </div>
 
-  <div id="history">
+<div class="title">
 
-    <div class="empty">
-      Loading...
-    </div>
-
-  </div>
+  DEMO TRADE HISTORY
 
 </div>
+
+
+<div id="history">
+
+
+<div class="empty">
+
+  Loading...
+
+</div>
+
+
+</div>
+
+
+</div>
+
 
 </section>
 
 
-<!-- ==================================
-     SETTINGS
-=================================== -->
 
 <section
   id="settingsScreen"
   class="screen"
 >
 
+
 <div class="card">
 
-  <div class="title">
-    INFORMATION
-  </div>
 
-  <p class="note">
-    Market data is supplied by Twelve Data.
-  </p>
+<div class="title">
 
-  <br>
-
-  <p class="note">
-    Signals use EMA 5, EMA 13,
-    RSI 14, momentum and
-    multi-timeframe confirmation.
-  </p>
-
-  <br>
-
-  <p class="note">
-    Confidence is an algorithmic score.
-    It is not a guaranteed probability
-    of winning.
-  </p>
-
-  <br>
-
-  <p class="note">
-    ADAMS OPTION tracks DEMO trades only.
-    It does not automatically place
-    real-money trades.
-  </p>
+  INFORMATION
 
 </div>
+
+
+<p class="note">
+
+  Market data is supplied by Twelve Data.
+
+</p>
+
+
+<br>
+
+
+<p class="note">
+
+  Signals use EMA 5, EMA 13,
+  RSI 14, momentum and
+  multi-timeframe confirmation.
+
+</p>
+
+
+<br>
+
+
+<p class="note">
+
+  Confidence is an algorithmic score.
+  It is not a guaranteed probability
+  of winning.
+
+</p>
+
+
+<br>
+
+
+<p class="note">
+
+  ADAMS OPTION does not automatically
+  place real-money trades.
+
+</p>
+
+
+</div>
+
 
 </section>
 
@@ -1001,87 +1401,108 @@ header{
 </div>
 
 
-<!-- ==================================
-     NAVIGATION
-=================================== -->
 
 <div class="bottom">
 
-  <div class="bottomInner">
+
+<div class="bottomInner">
 
 
-    <button
-      class="nav active"
-      data-screen="tradeScreen"
-    >
-      TRADE
-    </button>
+<button
+  class="nav active"
+  data-screen="tradeScreen"
+>
+
+  TRADE
+
+</button>
 
 
-    <button
-      class="nav"
-      data-screen="historyScreen"
-    >
-      HISTORY
-    </button>
+<button
+  class="nav"
+  data-screen="historyScreen"
+>
+
+  HISTORY
+
+</button>
 
 
-    <button
-      class="nav"
-      data-screen="settingsScreen"
-    >
-      SETTINGS
-    </button>
+<button
+  class="nav"
+  data-screen="settingsScreen"
+>
 
+  SETTINGS
 
-  </div>
+</button>
+
 
 </div>
 
 
+</div>
+
+
+
 <script>
 
-/* ==================================
+
+/* =================================
    SERVER
-=================================== */
+================================= */
+
 
 const SERVER_URL =
   "https://adams-option-server.onrender.com";
 
 
-/* ==================================
+
+/* =================================
    APP STATE
-=================================== */
+================================= */
+
 
 let selectedPair =
   "EUR/USD";
 
+
 let selectedTimeframe =
   "M1";
+
 
 let currentSignal =
   "WAIT";
 
+
 let currentConfidence =
   0;
+
 
 let openTradesCache =
   [];
 
 
-/* ==================================
-   HELPERS
-=================================== */
 
-function pairDecimals(pair){
+/* =================================
+   HELPERS
+================================= */
+
+
+function pairDecimals(
+  pair
+){
 
   return (
     pair &&
-    pair.includes("JPY")
+    pair.includes(
+      "JPY"
+    )
   )
     ? 3
     : 5;
 }
+
 
 
 function formatPrice(
@@ -1100,12 +1521,16 @@ function formatPrice(
     return "--";
   }
 
+
   return Number(
     value
   ).toFixed(
-    pairDecimals(pair)
+    pairDecimals(
+      pair
+    )
   );
 }
+
 
 
 function formatCountdown(
@@ -1113,8 +1538,10 @@ function formatCountdown(
 ){
 
   if(!expiresAt){
+
     return "--";
   }
+
 
   const remaining =
     Math.max(
@@ -1125,30 +1552,107 @@ function formatCountdown(
       Date.now()
     );
 
+
   const totalSeconds =
     Math.ceil(
       remaining / 1000
     );
+
 
   const minutes =
     Math.floor(
       totalSeconds / 60
     );
 
+
   const seconds =
     totalSeconds % 60;
 
+
   return (
-    String(minutes)
-      .padStart(2,"0") +
+    String(
+      minutes
+    ).padStart(
+      2,
+      "0"
+    ) +
     ":" +
-    String(seconds)
-      .padStart(2,"0")
+    String(
+      seconds
+    ).padStart(
+      2,
+      "0"
+    )
   );
 }
 
 
-function escapeHtml(value){
+
+function expirySeconds(){
+
+  if(
+    selectedTimeframe ===
+    "M15"
+  ){
+
+    return 15 * 60;
+  }
+
+
+  if(
+    selectedTimeframe ===
+    "M5"
+  ){
+
+    return 5 * 60;
+  }
+
+
+  return 60;
+}
+
+
+
+function formatExpiryDefault(){
+
+  const total =
+    expirySeconds();
+
+
+  const minutes =
+    Math.floor(
+      total / 60
+    );
+
+
+  const seconds =
+    total % 60;
+
+
+  return (
+    selectedTimeframe +
+    " • " +
+    String(
+      minutes
+    ).padStart(
+      2,
+      "0"
+    ) +
+    ":" +
+    String(
+      seconds
+    ).padStart(
+      2,
+      "0"
+    )
+  );
+}
+
+
+
+function escapeHtml(
+  value
+){
 
   return String(
     value ?? ""
@@ -1176,9 +1680,11 @@ function escapeHtml(value){
 }
 
 
-/* ==================================
+
+/* =================================
    SERVER STATUS
-=================================== */
+================================= */
+
 
 function setServerStatus(
   online
@@ -1189,10 +1695,12 @@ function setServerStatus(
       "serverStatus"
     );
 
+
   if(online){
 
     el.textContent =
       "SERVER ONLINE";
+
 
     el.className =
       "status online";
@@ -1202,10 +1710,12 @@ function setServerStatus(
     el.textContent =
       "SERVER OFFLINE";
 
+
     el.className =
       "status offline";
   }
 }
+
 
 
 async function checkServer(){
@@ -1222,7 +1732,10 @@ async function checkServer(){
         }
       );
 
-    if(!response.ok){
+
+    if(
+      !response.ok
+    ){
 
       throw new Error(
         "HTTP " +
@@ -1230,12 +1743,15 @@ async function checkServer(){
       );
     }
 
+
     const data =
       await response.json();
+
 
     setServerStatus(
       data.ok === true
     );
+
 
   }catch(error){
 
@@ -1244,6 +1760,7 @@ async function checkServer(){
       error
     );
 
+
     setServerStatus(
       false
     );
@@ -1251,9 +1768,56 @@ async function checkServer(){
 }
 
 
-/* ==================================
-   SELECTED PAIR / TF
-=================================== */
+
+/* =================================
+   SELECTED PAIR
+================================= */
+
+
+function highlightPair(){
+
+  document
+    .querySelectorAll(
+      ".asset"
+    )
+    .forEach(
+      btn => {
+
+        btn.classList.toggle(
+          "active",
+          btn.dataset.pair ===
+            selectedPair
+        );
+      }
+    );
+}
+
+
+
+/* =================================
+   TIMEFRAME
+================================= */
+
+
+function highlightTimeframe(){
+
+  document
+    .querySelectorAll(
+      ".tf"
+    )
+    .forEach(
+      btn => {
+
+        btn.classList.toggle(
+          "active",
+          btn.dataset.tf ===
+            selectedTimeframe
+        );
+      }
+    );
+}
+
+
 
 function updateSelectedInfo(){
 
@@ -1263,46 +1827,20 @@ function updateSelectedInfo(){
     selectedPair +
     " • " +
     selectedTimeframe;
+
+
+  document.getElementById(
+    "expiryDisplay"
+  ).textContent =
+    formatExpiryDefault();
 }
 
 
-function highlightPair(){
 
-  document
-    .querySelectorAll(
-      ".asset"
-    )
-    .forEach(btn=>{
-
-      btn.classList.toggle(
-        "active",
-        btn.dataset.pair ===
-        selectedPair
-      );
-    });
-}
-
-
-function highlightTimeframe(){
-
-  document
-    .querySelectorAll(
-      ".tf"
-    )
-    .forEach(btn=>{
-
-      btn.classList.toggle(
-        "active",
-        btn.dataset.tf ===
-        selectedTimeframe
-      );
-    });
-}
-
-
-/* ==================================
+/* =================================
    SIGNAL
-=================================== */
+================================= */
+
 
 function renderSignal(){
 
@@ -1311,10 +1849,12 @@ function renderSignal(){
       "signal"
     );
 
+
   const confidenceEl =
     document.getElementById(
       "confidence"
     );
+
 
   const barfill =
     document.getElementById(
@@ -1329,10 +1869,14 @@ function renderSignal(){
   signalEl.className =
     "signal " +
     (
-      currentSignal === "CALL"
+      currentSignal ===
+      "CALL"
+
         ? "call"
 
-        : currentSignal === "PUT"
+        : currentSignal ===
+          "PUT"
+
           ? "put"
 
           : "wait"
@@ -1356,14 +1900,24 @@ function renderSignal(){
 
 
   barfill.style.background =
-    currentSignal === "PUT"
+    currentSignal ===
+    "PUT"
+
       ? "var(--red)"
 
-      : currentSignal === "CALL"
+      : currentSignal ===
+        "CALL"
+
         ? "var(--green)"
 
         : "var(--gold)";
 }
+
+
+
+/* =================================
+   INDICATORS
+================================= */
 
 
 function renderIndicators(
@@ -1393,9 +1947,12 @@ function renderIndicators(
         data.rsi
       )
     )
+
       ? Number(
           data.rsi
-        ).toFixed(1)
+        ).toFixed(
+          1
+        )
 
       : "--";
 
@@ -1419,6 +1976,81 @@ function renderIndicators(
 }
 
 
+
+/* =================================
+   POCKET BUTTON
+================================= */
+
+
+function updatePocketButton(){
+
+  const btn =
+    document.getElementById(
+      "pocketBtn"
+    );
+
+
+  if(!btn){
+
+    return;
+  }
+
+
+  if(
+    currentSignal ===
+    "CALL"
+  ){
+
+    btn.textContent =
+      "OPEN POCKET OPTION — " +
+      selectedPair +
+      " CALL • " +
+      selectedTimeframe;
+
+
+    btn.className =
+      "btn pocketBtn callPocket";
+
+
+    return;
+  }
+
+
+  if(
+    currentSignal ===
+    "PUT"
+  ){
+
+    btn.textContent =
+      "OPEN POCKET OPTION — " +
+      selectedPair +
+      " PUT • " +
+      selectedTimeframe;
+
+
+    btn.className =
+      "btn pocketBtn putPocket";
+
+
+    return;
+  }
+
+
+  btn.textContent =
+    "OPEN POCKET OPTION";
+
+
+  btn.className =
+    "btn pocketBtn";
+}
+
+
+
+/* =================================
+   APPLY SIGNAL
+================================= */
+
+
 function applySignalData(
   data
 ){
@@ -1435,19 +2067,25 @@ function applySignalData(
     );
 
 
-  if(data.pair){
+  if(
+    data.pair
+  ){
 
     selectedPair =
       data.pair;
+
 
     highlightPair();
   }
 
 
-  if(data.timeframe){
+  if(
+    data.timeframe
+  ){
 
     selectedTimeframe =
       data.timeframe;
+
 
     highlightTimeframe();
   }
@@ -1455,17 +2093,40 @@ function applySignalData(
 
   updateSelectedInfo();
 
+
   renderSignal();
+
 
   renderIndicators(
     data
   );
+
+
+  updatePocketButton();
+
+
+  if(
+    data.trade &&
+    data.trade.expiresAt
+  ){
+
+    document.getElementById(
+      "expiryDisplay"
+    ).textContent =
+      selectedTimeframe +
+      " • " +
+      formatCountdown(
+        data.trade.expiresAt
+      );
+  }
 }
 
 
-/* ==================================
+
+/* =================================
    ANALYSE SELECTED PAIR
-=================================== */
+================================= */
+
 
 async function analyseMarket(){
 
@@ -1473,6 +2134,7 @@ async function analyseMarket(){
     document.getElementById(
       "analyseBtn"
     );
+
 
   const status =
     document.getElementById(
@@ -1520,7 +2182,9 @@ async function analyseMarket(){
       await response.json();
 
 
-    if(!response.ok){
+    if(
+      !response.ok
+    ){
 
       throw new Error(
         data.error ||
@@ -1573,9 +2237,11 @@ async function analyseMarket(){
 }
 
 
-/* ==================================
-   AUTO SCAN ALL 8
-=================================== */
+
+/* =================================
+   AUTO SCAN 8 PAIRS
+================================= */
+
 
 async function autoScan(){
 
@@ -1583,6 +2249,7 @@ async function autoScan(){
     document.getElementById(
       "autoScanBtn"
     );
+
 
   const status =
     document.getElementById(
@@ -1628,7 +2295,9 @@ async function autoScan(){
       await response.json();
 
 
-    if(!response.ok){
+    if(
+      !response.ok
+    ){
 
       throw new Error(
         data.error ||
@@ -1696,117 +2365,135 @@ async function autoScan(){
 }
 
 
-/* ==================================
+
+/* =================================
    PAIR BUTTONS
-=================================== */
+================================= */
+
 
 document
   .querySelectorAll(
     ".asset"
   )
-  .forEach(btn=>{
+  .forEach(
+    btn => {
 
-    btn.onclick =
-      ()=>{
+      btn.onclick =
+        () => {
 
-        selectedPair =
-          btn.dataset.pair;
-
-
-        currentSignal =
-          "WAIT";
+          selectedPair =
+            btn.dataset.pair;
 
 
-        currentConfidence =
-          0;
+          currentSignal =
+            "WAIT";
 
 
-        highlightPair();
-
-        updateSelectedInfo();
-
-        renderSignal();
+          currentConfidence =
+            0;
 
 
-        document.getElementById(
-          "engineStatus"
-        ).textContent =
-          selectedPair +
-          " selected";
+          highlightPair();
 
 
-        document.getElementById(
-          "price"
-        ).textContent =
-          "--";
+          updateSelectedInfo();
 
 
-        document.getElementById(
-          "rsi"
-        ).textContent =
-          "--";
+          renderSignal();
 
 
-        document.getElementById(
-          "emaFast"
-        ).textContent =
-          "--";
+          updatePocketButton();
 
 
-        document.getElementById(
-          "emaSlow"
-        ).textContent =
-          "--";
-      };
-
-  });
+          document.getElementById(
+            "engineStatus"
+          ).textContent =
+            selectedPair +
+            " selected";
 
 
-/* ==================================
+          document.getElementById(
+            "price"
+          ).textContent =
+            "--";
+
+
+          document.getElementById(
+            "rsi"
+          ).textContent =
+            "--";
+
+
+          document.getElementById(
+            "emaFast"
+          ).textContent =
+            "--";
+
+
+          document.getElementById(
+            "emaSlow"
+          ).textContent =
+            "--";
+        };
+    }
+  );
+
+
+
+/* =================================
    TIMEFRAME BUTTONS
-=================================== */
+================================= */
+
 
 document
   .querySelectorAll(
     ".tf"
   )
-  .forEach(btn=>{
+  .forEach(
+    btn => {
 
-    btn.onclick =
-      ()=>{
+      btn.onclick =
+        () => {
 
-        selectedTimeframe =
-          btn.dataset.tf;
-
-
-        currentSignal =
-          "WAIT";
+          selectedTimeframe =
+            btn.dataset.tf;
 
 
-        currentConfidence =
-          0;
+          currentSignal =
+            "WAIT";
 
 
-        highlightTimeframe();
-
-        updateSelectedInfo();
-
-        renderSignal();
+          currentConfidence =
+            0;
 
 
-        document.getElementById(
-          "engineStatus"
-        ).textContent =
-          selectedTimeframe +
-          " selected";
-      };
-
-  });
+          highlightTimeframe();
 
 
-/* ==================================
+          updateSelectedInfo();
+
+
+          renderSignal();
+
+
+          updatePocketButton();
+
+
+          document.getElementById(
+            "engineStatus"
+          ).textContent =
+            selectedTimeframe +
+            " selected";
+        };
+    }
+  );
+
+
+
+/* =================================
    STATS
-=================================== */
+================================= */
+
 
 async function loadStats(){
 
@@ -1823,7 +2510,10 @@ async function loadStats(){
       );
 
 
-    if(!response.ok){
+    if(
+      !response.ok
+    ){
+
       return;
     }
 
@@ -1835,40 +2525,48 @@ async function loadStats(){
     document.getElementById(
       "wins"
     ).textContent =
-      data.wins || 0;
+      data.wins ||
+      0;
 
 
     document.getElementById(
       "losses"
     ).textContent =
-      data.losses || 0;
+      data.losses ||
+      0;
 
 
     document.getElementById(
       "draws"
     ).textContent =
-      data.draws || 0;
+      data.draws ||
+      0;
 
 
     document.getElementById(
       "winrate"
     ).textContent =
       Number(
-        data.winRate || 0
-      ).toFixed(1) +
+        data.winRate ||
+        0
+      ).toFixed(
+        1
+      ) +
       "%";
 
 
     document.getElementById(
       "openCount"
     ).textContent =
-      data.openTrades || 0;
+      data.openTrades ||
+      0;
 
 
     document.getElementById(
       "tradesCount"
     ).textContent =
-      data.totalHistory || 0;
+      data.totalHistory ||
+      0;
 
 
   }catch(error){
@@ -1881,9 +2579,11 @@ async function loadStats(){
 }
 
 
-/* ==================================
+
+/* =================================
    OPEN TRADES
-=================================== */
+================================= */
+
 
 async function loadOpenTrades(){
 
@@ -1928,11 +2628,19 @@ async function loadOpenTrades(){
 
 
     if(
-      trades.length === 0
+      trades.length ===
+      0
     ){
 
       box.innerHTML =
         '<div class="empty">No open trades.</div>';
+
+
+      document.getElementById(
+        "expiryDisplay"
+      ).textContent =
+        formatExpiryDefault();
+
 
       return;
     }
@@ -1955,6 +2663,7 @@ async function loadOpenTrades(){
 }
 
 
+
 function renderOpenTrades(){
 
   const box =
@@ -1971,104 +2680,137 @@ function renderOpenTrades(){
     box.innerHTML =
       '<div class="empty">No open trades.</div>';
 
+
     return;
   }
 
 
   box.innerHTML =
     openTradesCache
-      .map(trade=>{
+      .map(
+        trade => {
 
-        const directionClass =
-          trade.direction ===
-          "CALL"
-            ? "call"
-            : "put";
+          const directionClass =
+            trade.direction ===
+            "CALL"
 
+              ? "call"
 
-        return `
-        <div class="tradeItem">
-
-          <div class="tradeTop">
-
-            <strong>
-              ${escapeHtml(trade.pair)}
-              •
-              ${escapeHtml(trade.timeframe)}
-            </strong>
-
-            <span
-              class="badge ${directionClass}"
-            >
-              ${escapeHtml(trade.direction)}
-            </span>
-
-          </div>
+              : "put";
 
 
-          <div class="row">
+          return `
+          <div class="tradeItem">
 
-            <span>
-              Confidence
-            </span>
+            <div class="tradeTop">
 
-            <strong>
-              ${Number(
-                trade.confidence || 0
-              )}%
-            </strong>
+              <strong>
 
-          </div>
+                ${escapeHtml(
+                  trade.pair
+                )}
 
+                •
 
-          <div class="row">
+                ${escapeHtml(
+                  trade.timeframe
+                )}
 
-            <span>
-              Entry
-            </span>
-
-            <strong>
-              ${formatPrice(
-                trade.pair,
-                trade.entry
-              )}
-            </strong>
-
-          </div>
+              </strong>
 
 
-          <div class="row">
+              <span
+                class="badge ${directionClass}"
+              >
 
-            <span>
-              Time remaining
-            </span>
+                ${escapeHtml(
+                  trade.direction
+                )}
 
-            <strong
-              class="tradeCountdown"
-              data-expiry="${
-                escapeHtml(
+              </span>
+
+            </div>
+
+
+            <div class="row">
+
+              <span>
+
+                Confidence
+
+              </span>
+
+
+              <strong>
+
+                ${Number(
+                  trade.confidence ||
+                  0
+                )}%
+
+              </strong>
+
+            </div>
+
+
+            <div class="row">
+
+              <span>
+
+                Entry
+
+              </span>
+
+
+              <strong>
+
+                ${formatPrice(
+                  trade.pair,
+                  trade.entry
+                )}
+
+              </strong>
+
+            </div>
+
+
+            <div class="row">
+
+              <span>
+
+                Time remaining
+
+              </span>
+
+
+              <strong
+                class="tradeCountdown"
+                data-expiry="${escapeHtml(
                   trade.expiresAt
-                )
-              }"
-            >
-              ${formatCountdown(
-                trade.expiresAt
-              )}
-            </strong>
+                )}"
+              >
+
+                ${formatCountdown(
+                  trade.expiresAt
+                )}
+
+              </strong>
+
+            </div>
 
           </div>
-
-        </div>
-        `;
-
-      })
+          `;
+        }
+      )
       .join("");
 }
 
 
-/* ==================================
-   COUNTDOWN
-=================================== */
+
+/* =================================
+   COUNTDOWNS
+================================= */
+
 
 function updateCountdowns(){
 
@@ -2076,19 +2818,43 @@ function updateCountdowns(){
     .querySelectorAll(
       ".tradeCountdown"
     )
-    .forEach(el=>{
+    .forEach(
+      el => {
 
-      el.textContent =
-        formatCountdown(
-          el.dataset.expiry
-        );
-    });
+        el.textContent =
+          formatCountdown(
+            el.dataset.expiry
+          );
+      }
+    );
+
+
+  if(
+    openTradesCache.length >
+    0
+  ){
+
+    const newest =
+      openTradesCache[0];
+
+
+    document.getElementById(
+      "expiryDisplay"
+    ).textContent =
+      newest.timeframe +
+      " • " +
+      formatCountdown(
+        newest.expiresAt
+      );
+  }
 }
 
 
-/* ==================================
+
+/* =================================
    CHECK EXPIRED TRADES
-=================================== */
+================================= */
+
 
 async function checkExpiredTrades(){
 
@@ -2096,6 +2862,7 @@ async function checkExpiredTrades(){
     openTradesCache.length ===
     0
   ){
+
     return;
   }
 
@@ -2114,7 +2881,10 @@ async function checkExpiredTrades(){
     );
 
 
-  if(!expired){
+  if(
+    !expired
+  ){
+
     return;
   }
 
@@ -2144,9 +2914,11 @@ async function checkExpiredTrades(){
 }
 
 
-/* ==================================
+
+/* =================================
    HISTORY
-=================================== */
+================================= */
+
 
 async function loadHistory(){
 
@@ -2173,7 +2945,9 @@ async function loadHistory(){
       await response.json();
 
 
-    if(!response.ok){
+    if(
+      !response.ok
+    ){
 
       throw new Error(
         "History error"
@@ -2185,16 +2959,20 @@ async function loadHistory(){
       Array.isArray(
         data.history
       )
+
         ? data.history
+
         : [];
 
 
     if(
-      history.length === 0
+      history.length ===
+      0
     ){
 
       box.innerHTML =
         '<div class="empty">No demo trades yet.</div>';
+
 
       return;
     }
@@ -2202,119 +2980,152 @@ async function loadHistory(){
 
     box.innerHTML =
       history
-        .map(t=>{
+        .map(
+          t => {
 
-          const cls =
-            t.result === "WIN"
-              ? "win"
+            const cls =
+              t.result ===
+              "WIN"
 
-              : t.result === "LOST"
-                ? "loss"
+                ? "win"
 
-                : "draw";
+                : t.result ===
+                  "LOST"
 
+                  ? "loss"
 
-          const directionClass =
-            t.direction === "CALL"
-              ? "call"
-              : "put";
-
-
-          const time =
-            t.closedAt
-              ? new Date(
-                  t.closedAt
-                ).toLocaleString()
-
-              : "";
+                  : "draw";
 
 
-          const entry =
-            formatPrice(
-              t.pair,
-              t.entry
-            );
+            const directionClass =
+              t.direction ===
+              "CALL"
+
+                ? "call"
+
+                : "put";
 
 
-          const exit =
-            formatPrice(
-              t.pair,
-              t.exit
-            );
+            const time =
+              t.closedAt
+
+                ? new Date(
+                    t.closedAt
+                  ).toLocaleString()
+
+                : "";
 
 
-          return `
-          <div class="historyItem">
+            const entry =
+              formatPrice(
+                t.pair,
+                t.entry
+              );
 
-            <div>
 
-              <strong>
-                ${escapeHtml(t.pair)}
-              </strong>
+            const exit =
+              formatPrice(
+                t.pair,
+                t.exit
+              );
 
-              <br>
 
-              <span
-                style="
-                  color:#748178;
-                  font-size:9px
-                "
+            return `
+            <div class="historyItem">
+
+              <div>
+
+                <strong>
+
+                  ${escapeHtml(
+                    t.pair
+                  )}
+
+                </strong>
+
+                <br>
+
+                <span
+                  style="
+                    color:#748178;
+                    font-size:9px
+                  "
+                >
+
+                  ${escapeHtml(
+                    time
+                  )}
+
+                </span>
+
+              </div>
+
+
+              <div
+                class="${directionClass}"
               >
-                ${escapeHtml(time)}
-              </span>
 
-            </div>
+                ${escapeHtml(
+                  t.direction
+                )}
+
+                <br>
+
+                <span
+                  style="
+                    font-size:9px;
+                    color:#829087
+                  "
+                >
+
+                  ${escapeHtml(
+                    t.timeframe
+                  )}
+
+                </span>
+
+              </div>
 
 
-            <div
-              class="${directionClass}"
-            >
-              ${escapeHtml(t.direction)}
+              <div>
 
-              <br>
+                ${Number(
+                  t.confidence ||
+                  0
+                )}%
 
-              <span
-                style="
-                  font-size:9px;
-                  color:#829087
-                "
+                <br>
+
+                <span
+                  style="
+                    font-size:9px;
+                    color:#829087
+                  "
+                >
+
+                  ${entry}
+                  →
+                  ${exit}
+
+                </span>
+
+              </div>
+
+
+              <div
+                class="${cls}"
               >
-                ${escapeHtml(t.timeframe)}
-              </span>
+
+                ${escapeHtml(
+                  t.result
+                )}
+
+              </div>
 
             </div>
-
-
-            <div>
-
-              ${Number(
-                t.confidence || 0
-              )}%
-
-              <br>
-
-              <span
-                style="
-                  font-size:9px;
-                  color:#829087
-                "
-              >
-                ${entry} → ${exit}
-              </span>
-
-            </div>
-
-
-            <div class="${cls}">
-
-              ${escapeHtml(t.result)}
-
-            </div>
-
-          </div>
-          `;
-
-        })
+            `;
+          }
+        )
         .join("");
 
 
@@ -2332,86 +3143,95 @@ async function loadHistory(){
 }
 
 
-/* ==================================
+
+/* =================================
    REFRESH
-=================================== */
+================================= */
+
 
 async function refreshEverything(){
 
-  await Promise.all([
-    loadStats(),
-    loadOpenTrades(),
-    loadHistory()
-  ]);
+  await Promise.all(
+    [
+      loadStats(),
+      loadOpenTrades(),
+      loadHistory()
+    ]
+  );
 }
 
 
-/* ==================================
+
+/* =================================
    NAVIGATION
-=================================== */
+================================= */
+
 
 document
   .querySelectorAll(
     ".nav"
   )
-  .forEach(btn=>{
+  .forEach(
+    btn => {
 
-    btn.onclick =
-      ()=>{
+      btn.onclick =
+        () => {
 
-        document
-          .querySelectorAll(
-            ".nav"
-          )
-          .forEach(
-            b =>
-              b.classList.remove(
-                "active"
-              )
-          );
-
-
-        btn.classList.add(
-          "active"
-        );
+          document
+            .querySelectorAll(
+              ".nav"
+            )
+            .forEach(
+              b =>
+                b.classList.remove(
+                  "active"
+                )
+            );
 
 
-        document
-          .querySelectorAll(
-            ".screen"
-          )
-          .forEach(
-            screen =>
-              screen.classList.remove(
-                "active"
-              )
-          );
-
-
-        document
-          .getElementById(
-            btn.dataset.screen
-          )
-          .classList.add(
+          btn.classList.add(
             "active"
           );
 
 
-        if(
-          btn.dataset.screen ===
-          "historyScreen"
-        ){
+          document
+            .querySelectorAll(
+              ".screen"
+            )
+            .forEach(
+              screen =>
+                screen.classList.remove(
+                  "active"
+                )
+            );
 
-          loadHistory();
-        }
-      };
 
-  });
+          document
+            .getElementById(
+              btn.dataset.screen
+            )
+            .classList.add(
+              "active"
+            );
 
 
-/* ==================================
+          if(
+            btn.dataset.screen ===
+            "historyScreen"
+          ){
+
+            loadHistory();
+          }
+        };
+    }
+  );
+
+
+
+/* =================================
    BUTTON EVENTS
-=================================== */
+================================= */
+
 
 document.getElementById(
   "analyseBtn"
@@ -2425,26 +3245,38 @@ document.getElementById(
   autoScan;
 
 
-/* ==================================
+
+/* =================================
    START
-=================================== */
+================================= */
+
 
 renderSignal();
 
+
 highlightPair();
+
 
 highlightTimeframe();
 
+
 updateSelectedInfo();
 
+
+updatePocketButton();
+
+
 checkServer();
+
 
 refreshEverything();
 
 
-/* ==================================
+
+/* =================================
    TIMERS
-=================================== */
+================================= */
+
 
 setInterval(
   updateCountdowns,
@@ -2459,12 +3291,11 @@ setInterval(
 
 
 setInterval(
-  async ()=>{
+  async () => {
 
     await loadStats();
 
     await loadOpenTrades();
-
   },
   15000
 );
@@ -2475,7 +3306,10 @@ setInterval(
   30000
 );
 
+
 </script>
 
+
 </body>
+
   </html>
