@@ -18,11 +18,7 @@
 <title>ADAMS OPTION</title>
 
 
-<!-- ONESIGNAL -->
-<script
-  src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
-  defer
-></script>
+<!-- Telegram-only notifications are sent by the server, not by this webpage. -->
 
 
 <style>
@@ -512,7 +508,7 @@ header{
 </div>
 
 <div class="subtitle">
-  FOREX REAL DATA • POCKET MODE • DEMO
+  FOREX M5 • TELEGRAM SIGNALS • DEMO HISTORY
 </div>
 
 <div
@@ -603,26 +599,7 @@ header{
 
 <div class="tfrow">
 
-<button
-  class="tf active"
-  data-tf="M1"
->
-  M1
-</button>
-
-<button
-  class="tf"
-  data-tf="M5"
->
-  M5
-</button>
-
-<button
-  class="tf"
-  data-tf="M15"
->
-  M15
-</button>
+<button class="tf active" data-tf="M5">M5 ONLY · 05:00 EXPIRY</button>
 
 </div>
 
@@ -666,7 +643,7 @@ header{
   id="selectedInfo"
   class="selectedInfo"
 >
-  EUR/USD • M1
+  EUR/USD • M5
 </div>
 
 <button
@@ -680,7 +657,7 @@ header{
   id="autoScanBtn"
   class="btn autoScan"
 >
-  AUTO SCAN 8 PAIRS
+  VIEW BEST CACHED M5
 </button>
 
 <a
@@ -708,7 +685,7 @@ header{
   </span>
 
   <b id="expiryDisplay">
-    M1 • 01:00
+    M5 • 05:00
   </b>
 
 </div>
@@ -776,40 +753,18 @@ header{
 <div class="card">
 
 <div class="title">
-  NOTIFICATIONS
+  TELEGRAM SIGNALS · M5
 </div>
-
 <p class="note">
-
-  Enable notifications to receive
-  CALL / PUT signals and
-  WIN / LOST / DRAW results.
-
+  ADAMS OPTION runs on the server. Confirmed CALL / PUT signals and subsequent DEMO WIN / LOST / DRAW results go ONLY to Telegram, even when the app is closed.
 </p>
-
-<button
-  id="enableNotifications"
-  class="btn notificationBtn"
->
-  🔔 ENABLE NOTIFICATIONS
-</button>
-
-<button
-  id="testNotification"
-  class="btn testBtn"
->
-  🔔 TEST NOTIFICATION
-</button>
-
-<div
-  id="notificationStatus"
-  class="notificationStatus"
->
-  Checking notification status...
+<div id="notificationStatus" class="notificationStatus" role="status" aria-live="polite">
+  Checking Telegram connection...
 </div>
-
+<p class="note" style="margin-top:12px">
+  One forex pair is refreshed each 5 minutes in rotation to protect the shared Twelve Data free quota. Not every check creates a signal; regular Forex only, NOT Pocket Option OTC.
+</p>
 </div>
-
 
 
 <div class="card">
@@ -820,9 +775,10 @@ header{
 
 <p class="note">
 
-  AUTO SCAN analyses all 8 forex
-  pairs and selects the strongest
-  confirmed CALL or PUT signal.
+  VIEW BEST CACHED M5 compares eight
+  forex pairs from the available
+  data without making new Twelve Data requests.
+  Only fresh, confirmed signals can trigger a Telegram message.
 
 </p>
 
@@ -842,7 +798,7 @@ header{
 
   ADAMS OPTION tracks the result
   as a DEMO trade and records
-  WIN / LOST / DRAW.
+  WIN / LOST / DRAW. The demo feed is not the same as Pocket Option execution or OTC quotes.
 
 </p>
 
@@ -1043,462 +999,28 @@ const SERVER_URL =
 
 
 /* =================================
-   ONESIGNAL
+   TELEGRAM ONLY - server sends all alert messages
 ================================= */
 
-const ONESIGNAL_APP_ID =
-  "cda9b6dc-b0a8-4171-8e7d-c47bd35b6ba0";
-
-let OneSignalClient = null;
-let oneSignalReady = false;
-
-
-window.OneSignalDeferred =
-  window.OneSignalDeferred || [];
-
-
-OneSignalDeferred.push(
-  async function(OneSignal){
-
-    try{
-
-      OneSignalClient =
-        OneSignal;
-
-
-      await OneSignal.init({
-
-        appId:
-          ONESIGNAL_APP_ID,
-
-        autoResubscribe:
-          true
-
-      });
-
-
-      oneSignalReady =
-        true;
-
-
-      OneSignal.User
-        .PushSubscription
-        .addEventListener(
-          "change",
-          function(){
-
-            updateNotificationStatus();
-
-          }
-        );
-
-
-      await updateNotificationStatus();
-
-
-    }catch(error){
-
-      console.error(
-        "OneSignal init:",
-        error
-      );
-
-
-      document.getElementById(
-        "notificationStatus"
-      ).textContent =
-        "OneSignal error: " +
-        (
-          error.message ||
-          "initialisation failed"
-        );
-    }
-
-  }
-);
-
-
-
-async function updateNotificationStatus(){
-
-  const button =
-    document.getElementById(
-      "enableNotifications"
-    );
-
-
-  const status =
-    document.getElementById(
-      "notificationStatus"
-    );
-
-
-  if(
-    !oneSignalReady ||
-    !OneSignalClient
-  ){
-
-    status.textContent =
-      "Loading notification service...";
-
-
+function renderTelegramStatus(data){
+  const el=document.getElementById("notificationStatus");
+  if(!el)return;
+  if(!data || data.ok!==true){
+    el.textContent="⚠️ Server is unavailable. Telegram status unknown.";
     return;
   }
-
-
-  try{
-
-    const supported =
-      OneSignalClient
-        .Notifications
-        .isPushSupported();
-
-
-    if(!supported){
-
-      button.textContent =
-        "NOTIFICATIONS NOT SUPPORTED";
-
-
-      button.className =
-        "btn notificationBlocked";
-
-
-      status.textContent =
-        "This browser does not support web push.";
-
-
-      return;
-    }
-
-
-    const permission =
-      OneSignalClient
-        .Notifications
-        .permission;
-
-
-    const optedIn =
-      OneSignalClient
-        .User
-        .PushSubscription
-        .optedIn;
-
-
-    const subscriptionId =
-      OneSignalClient
-        .User
-        .PushSubscription
-        .id;
-
-
-    if(
-      permission &&
-      optedIn &&
-      subscriptionId
-    ){
-
-      button.textContent =
-        "✅ NOTIFICATIONS ON";
-
-
-      button.className =
-        "btn notificationOn";
-
-
-      status.textContent =
-        "Subscribed • ready for CALL / PUT and trade results.";
-
-
-      return;
-    }
-
-
-    if(
-      Notification.permission ===
-      "denied"
-    ){
-
-      button.textContent =
-        "❌ NOTIFICATIONS BLOCKED";
-
-
-      button.className =
-        "btn notificationBlocked";
-
-
-      status.textContent =
-        "Notifications are blocked in Chrome. Open Site settings → Notifications → Allow.";
-
-
-      return;
-    }
-
-
-    button.textContent =
-      "🔔 ENABLE NOTIFICATIONS";
-
-
-    button.className =
-      "btn notificationBtn";
-
-
-    status.textContent =
-      "Tap ENABLE NOTIFICATIONS and press Allow.";
-
-  }catch(error){
-
-    console.error(
-      "Notification status:",
-      error
-    );
-
-
-    status.textContent =
-      "Notification status error: " +
-      error.message;
-  }
+  const online=data.telegramConfigured===true;
+  const used=Number(data.requestsToday)||0;
+  const limit=Number(data.requestBudget)||150;
+  const working=data.forexOpen===true;
+  el.textContent=(online?"✅ TELEGRAM CONNECTED":"⚠️ TELEGRAM NOT CONFIGURED ON RENDER")
+    +" · M5 signals and DEMO results"
+    +"\nScanner: "+(data.autoEnabled?"ON":"OFF")
+    +" · "+(working?"Forex session active":"Paused outside 08:00–20:00 UK weekdays")
+    +"\nTwelve Data calls today: "+used+" / "+limit+" (ADAMS OPTION only)"
+    +"\nBot delivery: "+(online?"Telegram only":"Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in ADAMS OPTION Render settings");
+  el.style.whiteSpace="pre-line";
 }
-
-
-
-async function enableNotifications(){
-
-  const status =
-    document.getElementById(
-      "notificationStatus"
-    );
-
-
-  if(
-    !oneSignalReady ||
-    !OneSignalClient
-  ){
-
-    status.textContent =
-      "Notification service is still loading...";
-
-
-    return;
-  }
-
-
-  try{
-
-    status.textContent =
-      "Requesting notification permission...";
-
-
-    const supported =
-      OneSignalClient
-        .Notifications
-        .isPushSupported();
-
-
-    if(!supported){
-
-      status.textContent =
-        "This browser does not support push notifications.";
-
-
-      return;
-    }
-
-
-    await OneSignalClient
-      .Notifications
-      .requestPermission();
-
-
-    if(
-      !OneSignalClient
-        .Notifications
-        .permission
-    ){
-
-      status.textContent =
-        "Permission was not granted. In Chrome open Site settings → Notifications → Allow.";
-
-
-      await updateNotificationStatus();
-
-
-      return;
-    }
-
-
-    await OneSignalClient
-      .User
-      .PushSubscription
-      .optIn();
-
-
-    status.textContent =
-      "Registering this phone...";
-
-
-    await new Promise(
-      resolve =>
-        setTimeout(
-          resolve,
-          1800
-        )
-    );
-
-
-    await updateNotificationStatus();
-
-
-  }catch(error){
-
-    console.error(
-      "Enable notifications:",
-      error
-    );
-
-
-    status.textContent =
-      "Notification error: " +
-      (
-        error.message ||
-        "unknown error"
-      );
-  }
-}
-
-
-
-async function testNotification(){
-
-  const button =
-    document.getElementById(
-      "testNotification"
-    );
-
-
-  const status =
-    document.getElementById(
-      "notificationStatus"
-    );
-
-
-  try{
-
-    button.disabled =
-      true;
-
-
-    if(
-      !oneSignalReady ||
-      !OneSignalClient
-    ){
-
-      throw new Error(
-        "OneSignal is not ready"
-      );
-    }
-
-
-    const permission =
-      OneSignalClient
-        .Notifications
-        .permission;
-
-
-    const optedIn =
-      OneSignalClient
-        .User
-        .PushSubscription
-        .optedIn;
-
-
-    const subscriptionId =
-      OneSignalClient
-        .User
-        .PushSubscription
-        .id;
-
-
-    if(
-      !permission ||
-      !optedIn ||
-      !subscriptionId
-    ){
-
-      status.textContent =
-        "First press ENABLE NOTIFICATIONS.";
-
-
-      return;
-    }
-
-
-    status.textContent =
-      "Sending test notification...";
-
-
-    const response =
-      await fetch(
-        SERVER_URL +
-        "/api/test-notification",
-        {
-          cache:
-            "no-store"
-        }
-      );
-
-
-    const data =
-      await response.json();
-
-
-    console.log(
-      "Test notification:",
-      data
-    );
-
-
-    if(
-      !response.ok ||
-      data.ok === false
-    ){
-
-      throw new Error(
-        data.error ||
-        data.body ||
-        "Push test failed"
-      );
-    }
-
-
-    status.textContent =
-      "✅ Test sent. Check your phone notifications.";
-
-
-  }catch(error){
-
-    console.error(
-      "Test notification:",
-      error
-    );
-
-
-    status.textContent =
-      "Test error: " +
-      (
-        error.message ||
-        "unknown error"
-      );
-
-
-  }finally{
-
-    button.disabled =
-      false;
-  }
-}
-
-
 
 /* =================================
    APP STATE
@@ -1510,7 +1032,7 @@ let selectedPair =
 
 
 let selectedTimeframe =
-  "M1";
+  "M5";
 
 
 let currentSignal =
@@ -1793,6 +1315,7 @@ async function checkServer(){
     setServerStatus(
       data.ok === true
     );
+    renderTelegramStatus(data);
 
 
   }catch(error){
@@ -1806,6 +1329,7 @@ async function checkServer(){
     setServerStatus(
       false
     );
+    renderTelegramStatus(null);
   }
 }
 
@@ -2305,13 +1829,11 @@ async function autoScan(){
 
 
     button.textContent =
-      "SCANNING 8 PAIRS...";
+      "CHECKING CACHED M5...";
 
 
     status.textContent =
-      "Searching strongest " +
-      selectedTimeframe +
-      " signal...";
+      "Checking freshest M5 forex signals...";
 
 
     const url =
@@ -2401,7 +1923,7 @@ async function autoScan(){
 
 
     button.textContent =
-      "AUTO SCAN 8 PAIRS";
+      "VIEW BEST CACHED M5";
   }
 }
 
@@ -3247,18 +2769,7 @@ document.getElementById(
   autoScan;
 
 
-document.getElementById(
-  "enableNotifications"
-).onclick =
-  enableNotifications;
-
-
-document.getElementById(
-  "testNotification"
-).onclick =
-  testNotification;
-
-
+/* Telegram messages are sent by the server. No browser push subscription is needed. */
 
 /* =================================
    START
