@@ -893,7 +893,7 @@ header{
 <div id="history">
 
 <div class="empty">
-  Loading...
+  Checking saved results...
 </div>
 
 </div>
@@ -996,6 +996,11 @@ header{
 
 const SERVER_URL =
   "https://adams-option-server.onrender.com";
+async function fetchServer(endpoint) {
+  const r=await fetch(SERVER_URL+endpoint,{cache:"no-store",signal:AbortSignal.timeout(12000)});
+  if(!r.ok)throw new Error("HTTP "+r.status);
+  return r.json();
+}
 
 
 /* =================================
@@ -1010,6 +1015,10 @@ function renderTelegramStatus(data){
     return;
   }
   const online=data.telegramConfigured===true;
+  const storage=data.historyStorage;
+  const storageNotice=storage&&!storage.durable
+    ? "\n⚠️ History needs persistent storage to survive a server restart."
+    : "";
   const used=Number(data.requestsToday)||0;
   const limit=Number(data.requestBudget)||150;
   const working=data.forexOpen===true;
@@ -1018,7 +1027,7 @@ function renderTelegramStatus(data){
     +"\nScanner: "+(data.autoEnabled?"ON":"OFF")
     +" · "+(working?"Forex session active":"Paused outside 08:00–20:00 UK weekdays")
     +"\nTwelve Data calls today: "+used+" / "+limit+" (ADAMS OPTION only)"
-    +"\nBot delivery: "+(online?"Telegram only":"Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in ADAMS OPTION Render settings");
+    +"\nBot delivery: "+(online?"Telegram only":"Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in ADAMS OPTION Render settings")+storageNotice;
   el.style.whiteSpace="pre-line";
 }
 
@@ -1286,31 +1295,7 @@ async function checkServer(){
 
   try{
 
-    const response =
-      await fetch(
-        SERVER_URL +
-        "/health",
-        {
-          cache:
-            "no-store"
-        }
-      );
-
-
-    if(
-      !response.ok
-    ){
-
-      throw new Error(
-        "HTTP " +
-        response.status
-      );
-    }
-
-
-    const data =
-      await response.json();
-
+    const data=await fetchServer("/health");
 
     setServerStatus(
       data.ok === true
@@ -2461,30 +2446,7 @@ async function loadHistory(){
 
   try{
 
-    const response =
-      await fetch(
-        SERVER_URL +
-        "/api/history",
-        {
-          cache:
-            "no-store"
-        }
-      );
-
-
-    const data =
-      await response.json();
-
-
-    if(
-      !response.ok
-    ){
-
-      throw new Error(
-        "History error"
-      );
-    }
-
+    const data=await fetchServer("/api/history");
 
     const history =
       Array.isArray(
@@ -2502,7 +2464,7 @@ async function loadHistory(){
     ){
 
       box.innerHTML =
-        '<div class="empty">No demo trades yet.</div>';
+        '<div class="empty">No settled demo results saved yet. Open signals are shown on TRADE until expiry is verified.</div>';
 
 
       return;
@@ -2662,7 +2624,7 @@ async function loadHistory(){
 
 
     box.innerHTML =
-      '<div class="empty">Cannot load history.</div>';
+      '<div class="empty">Cannot load history. Check server and tap HISTORY to retry.</div>';
   }
 }
 
@@ -2815,6 +2777,7 @@ setInterval(
     await loadStats();
 
     await loadOpenTrades();
+    await loadHistory();
 
   },
   15000
