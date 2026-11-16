@@ -955,6 +955,7 @@ header{
     <span>WIN RATE</span>
   </div>
 </div>
+<div class="historyMeta" id="historyStorageStatus">Checking history storage...</div>
 <div class="historyMeta" id="historyMeta">Loading verified demo results...</div>
 <div class="historyMeta" id="historyPending">Loading open trades...</div>
 
@@ -1074,6 +1075,21 @@ async function fetchServer(endpoint) {
 /* =================================
    TELEGRAM ONLY - server sends all alert messages
 ================================= */
+
+function renderHistoryStorageStatus(data){
+  const el=document.getElementById("historyStorageStatus");
+  if(!el)return;
+  const store=data?.historyStorage;
+  if(!store){
+    el.textContent="⚠️ History storage status unavailable — server connection not verified.";
+  }else if(!store.ready){
+    el.textContent="⛔ History database unavailable. Results cannot be saved reliably.";
+  }else if(store.durable){
+    el.textContent="✅ PERMANENT HISTORY — database connected. Results survive server restarts.";
+  }else{
+    el.textContent="⚠️ TEMPORARY HISTORY — records can disappear when Render restarts. Connect PostgreSQL.";
+  }
+}
 
 function renderTelegramStatus(data){
   const el=document.getElementById("notificationStatus");
@@ -1374,6 +1390,7 @@ async function checkServer(){
       data.ok === true
     );
     renderTelegramStatus(data);
+    renderHistoryStorageStatus(data);
 
 
   }catch(error){
@@ -1388,6 +1405,7 @@ async function checkServer(){
       false
     );
     renderTelegramStatus(null);
+    renderHistoryStorageStatus(null);
   }
 }
 
