@@ -1065,7 +1065,7 @@ header{
 const SERVER_URL =
   "https://adams-option-server.onrender.com";
 async function fetchServer(endpoint) {
-  const r=await fetch(SERVER_URL+endpoint,{cache:"no-store",signal:AbortSignal.timeout(12000)});
+  const r=await fetch(SERVER_URL+endpoint,{cache:"no-store",signal:AbortSignal.timeout(45000)});
   if(!r.ok)throw new Error("HTTP "+r.status);
   return r.json();
 }
@@ -1360,7 +1360,12 @@ function setServerStatus(
 
 
 async function checkServer(){
-
+  // A Render free service can need time to wake up; don't show OFFLINE while checking.
+  const statusEl=document.getElementById("serverStatus");
+  if(statusEl && !statusEl.classList.contains("online")){
+    statusEl.textContent="CONNECTING SERVER...";
+    statusEl.className="status";
+  }
   try{
 
     const data=await fetchServer("/health");
