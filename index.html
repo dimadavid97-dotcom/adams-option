@@ -390,6 +390,53 @@ header{
   font-weight:bold;
 }
 
+.historySummary{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-bottom:12px;
+}
+.historyMetric{
+  background:#07100c;
+  border:1px solid var(--line);
+  border-radius:12px;
+  text-align:center;
+  padding:13px 6px;
+}
+.historyMetric b{
+  display:block;
+  font-size:25px;
+  line-height:1.2;
+  margin-bottom:5px;
+}
+.historyMetric span{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:700;
+}
+.historyMeta{
+  color:var(--muted);
+  font-size:11px;
+  margin:10px 2px;
+  line-height:1.5;
+}
+.historyResult{
+  padding:6px 10px;
+  border-radius:24px;
+  font-size:14px;
+  border:1px solid currentColor;
+  background:#07100c;
+}
+.historyTrade .row{
+  font-size:12px;
+  align-items:baseline;
+}
+.historyTrade .row span:first-child{
+  color:var(--muted);
+}
+.historyTrade .tradeTop strong:first-child{
+  font-size:15px;
+}
 .empty{
   text-align:center;
   padding:20px;
@@ -887,8 +934,29 @@ header{
 <div class="card">
 
 <div class="title">
-  DEMO TRADE HISTORY
+  DEMO TRADE HISTORY · LIVE WIN / LOST
 </div>
+
+<div class="historySummary" aria-label="Demo trade results">
+  <div class="historyMetric">
+    <b class="win" id="historyWins">0</b>
+    <span>WIN</span>
+  </div>
+  <div class="historyMetric">
+    <b class="loss" id="historyLosses">0</b>
+    <span>LOST</span>
+  </div>
+  <div class="historyMetric">
+    <b class="draw" id="historyDraws">0</b>
+    <span>DRAW</span>
+  </div>
+  <div class="historyMetric">
+    <b id="historyWinRate">0.0%</b>
+    <span>WIN RATE</span>
+  </div>
+</div>
+<div class="historyMeta" id="historyMeta">Loading verified demo results...</div>
+<div class="historyMeta" id="historyPending">Loading open trades...</div>
 
 <div id="history">
 
@@ -2109,6 +2177,12 @@ async function loadStats(){
       data.totalHistory ||
       0;
 
+    // The HISTORY tab has its own always-visible result scorecard.
+    document.getElementById("historyWins").textContent=Number(data.wins)||0;
+    document.getElementById("historyLosses").textContent=Number(data.losses)||0;
+    document.getElementById("historyDraws").textContent=Number(data.draws)||0;
+    document.getElementById("historyWinRate").textContent=(Number(data.winRate)||0).toFixed(1)+"%";
+
 
   }catch(error){
 
@@ -2167,6 +2241,10 @@ async function loadOpenTrades(){
     openTradesCache =
       trades;
 
+    document.getElementById("historyPending").textContent =
+      trades.length > 0
+        ? trades.length+" OPEN demo trade(s) awaiting expiry verification. Check TRADE for live positions."
+        : "No open demo trades awaiting expiry verification.";
 
     if(
       trades.length === 0
@@ -2437,198 +2515,55 @@ async function checkExpiredTrades(){
 
 
 async function loadHistory(){
-
-  const box =
-    document.getElementById(
-      "history"
-    );
-
+  const box=document.getElementById("history");
+  const meta=document.getElementById("historyMeta");
 
   try{
-
     const data=await fetchServer("/api/history");
+    const history=Array.isArray(data.history)?data.history:[];
 
-    const history =
-      Array.isArray(
-        data.history
-      )
+    meta.textContent=history.length+
+      " verified settled DEMO result(s) from the server. Refreshed automatically every 15 seconds.";
 
-        ? data.history
-
-        : [];
-
-
-    if(
-      history.length ===
-      0
-    ){
-
-      box.innerHTML =
-        '<div class="empty">No settled demo results saved yet. Open signals are shown on TRADE until expiry is verified.</div>';
-
-
+    if(history.length===0){
+      box.innerHTML='<div class="empty">No verified WIN / LOST / DRAW results yet. New demo trades appear here after the server confirms their M5 expiry.</div>';
       return;
     }
 
-
-    box.innerHTML =
-      history
-        .map(
-          t => {
-
-            const cls =
-              t.result ===
-              "WIN"
-
-                ? "win"
-
-                : (
-                    t.result ===
-                    "LOST" ||
-                    t.result ===
-                    "LOSS"
-                  )
-
-                  ? "loss"
-
-                  : "draw";
-
-
-            const directionClass =
-              t.direction ===
-              "CALL"
-
-                ? "call"
-
-                : "put";
-
-
-            const time =
-              t.closedAt
-
-                ? new Date(
-                    t.closedAt
-                  ).toLocaleString()
-
-                : "";
-
-
-            const entry =
-              formatPrice(
-                t.pair,
-                t.entry
-              );
-
-
-            const exit =
-              formatPrice(
-                t.pair,
-                t.exit
-              );
-
-
-            return `
-            <div class="historyItem">
-
-              <div>
-
-                <strong>
-                  ${escapeHtml(
-                    t.pair
-                  )}
-                </strong>
-
-                <br>
-
-                <span
-                  style="
-                    color:#748178;
-                    font-size:9px
-                  "
-                >
-                  ${escapeHtml(
-                    time
-                  )}
-                </span>
-
-              </div>
-
-              <div
-                class="${directionClass}"
-              >
-
-                ${escapeHtml(
-                  t.direction
-                )}
-
-                <br>
-
-                <span
-                  style="
-                    font-size:9px;
-                    color:#829087
-                  "
-                >
-                  ${escapeHtml(
-                    t.timeframe
-                  )}
-                </span>
-
-              </div>
-
-              <div>
-
-                ${Number(
-                  t.confidence ||
-                  0
-                )}%
-
-                <br>
-
-                <span
-                  style="
-                    font-size:9px;
-                    color:#829087
-                  "
-                >
-
-                  ${entry}
-                  →
-                  ${exit}
-
-                </span>
-
-              </div>
-
-              <div
-                class="${cls}"
-              >
-                ${escapeHtml(
-                  t.result
-                )}
-              </div>
-
-            </div>
-            `;
-          }
-        )
-        .join("");
-
-
+    box.innerHTML=history.map(trade=>{
+      const result=String(trade.result||"").toUpperCase();
+      const cls=result==="WIN"?"win":(result==="LOST"||result==="LOSS")?"loss":"draw";
+      const resultLabel=result==="LOSS"?"LOST":result;
+      const direction=trade.direction||trade.side||"";
+      const directionClass=direction==="CALL"?"call":"put";
+      const closedDate=Number(trade.closedAt||trade.expiresAt||0);
+      const closedAt=closedDate
+        ? new Date(closedDate).toLocaleString("en-GB",{
+            timeZone:"Europe/London",day:"2-digit",month:"short",year:"numeric",
+            hour:"2-digit",minute:"2-digit"
+          })
+        : "Not recorded";
+      const entry=formatPrice(trade.pair,trade.entry);
+      const exit=formatPrice(trade.pair,trade.exit);
+      const score=Number(trade.confidence)||0;
+      return `
+        <div class="tradeItem historyTrade">
+          <div class="tradeTop">
+            <strong>${escapeHtml(trade.pair)} · ${escapeHtml(trade.timeframe||"M5")}</strong>
+            <strong class="historyResult ${cls}">${escapeHtml(resultLabel)}</strong>
+          </div>
+          <div class="row"><span>Direction</span><strong class="${directionClass}">${escapeHtml(direction)}</strong></div>
+          <div class="row"><span>Entry → Exit</span><strong>${escapeHtml(entry)} → ${escapeHtml(exit)}</strong></div>
+          <div class="row"><span>Closed (UK time)</span><strong>${escapeHtml(closedAt)}</strong></div>
+          <div class="row"><span>Signal quality</span><strong>${score}/100</strong></div>
+        </div>`;
+    }).join("");
   }catch(error){
-
-    console.error(
-      "History:",
-      error
-    );
-
-
-    box.innerHTML =
-      '<div class="empty">Cannot load history. Check server and tap HISTORY to retry.</div>';
+    console.error("History:",error);
+    meta.textContent="History data could not be loaded.";
+    box.innerHTML='<div class="empty">Cannot load history from the server. Tap HISTORY again to retry.</div>';
   }
 }
-
-
 
 /* =================================
    REFRESH
