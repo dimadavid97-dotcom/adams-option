@@ -922,10 +922,13 @@ header{
 </div>
 
 
+<div class="card" id="recentDemoResultsCard">
+  <div class="title">LATEST VERIFIED DEMO RESULTS</div>
+  <div class="historyMeta">Synced from server • regular Forex M5 demo</div>
+  <div id="recentDemoResults"><div class="empty">Loading WIN / LOST / DRAW...</div></div>
+  <button id="openFullHistoryBtn" type="button" style="width:100%;margin-top:12px;padding:12px">VIEW FULL HISTORY</button>
+</div>
 </section>
-
-
-
 <section
   id="historyScreen"
   class="screen"
@@ -958,6 +961,7 @@ header{
 <div class="historyMeta" id="historyStorageStatus">Checking history storage...</div>
 <div class="historyMeta" id="historyMeta">Loading verified demo results...</div>
 <div class="historyMeta" id="historyPending">Loading open trades...</div>
+<button id="refreshHistoryBtn" type="button" style="width:100%;padding:12px;margin:10px 0">REFRESH LIVE HISTORY</button>
 
 <div id="history">
 
@@ -2507,6 +2511,24 @@ async function loadHistory(){
   try{
     const data=await fetchServer("/api/history");
     const history=Array.isArray(data.history)?data.history:[];
+    const recent=document.getElementById("recentDemoResults");
+    if(recent){
+      recent.innerHTML=history.length?history.slice(0,5).map(trade=>{
+        const result=String(trade.result||trade.status||"").toUpperCase();
+        const cls=result==="WIN"?"win":(result==="LOST"||result==="LOSS")?"loss":"draw";
+        const timestamp=Number(trade.closedAt||trade.expiresAt||0);
+        const when=Number.isFinite(timestamp)&&timestamp>0
+          ?new Date(timestamp).toLocaleString("en-GB",{timeZone:"Europe/London",day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"})
+          :"Unknown time";
+        return '<div class="tradeItem"><div class="tradeTop"><strong>'+
+          escapeHtml(trade.pair||"FOREX")+' · M5</strong><strong class="historyResult '+cls+'">'+
+          escapeHtml(result==="LOSS"?"LOST":result)+'</strong></div>'+
+          '<div class="row"><span>'+escapeHtml(trade.direction||trade.side||"")+
+          ' · '+escapeHtml(when)+'</span><strong>'+
+          escapeHtml(formatPrice(trade.pair,trade.entry))+' → '+
+          escapeHtml(formatPrice(trade.pair,trade.exit))+'</strong></div></div>';
+      }).join(""):'<div class="empty">No verified DEMO results yet. Open trades are tracked separately.</div>';
+    }
 
     meta.textContent=history.length+
       " verified settled DEMO result(s) from the server. Refreshed automatically every 15 seconds.";
@@ -2547,7 +2569,9 @@ async function loadHistory(){
   }catch(error){
     console.error("History:",error);
     meta.textContent="History data could not be loaded.";
-    box.innerHTML='<div class="empty">Cannot load history from the server. Tap HISTORY again to retry.</div>';
+    box.innerHTML='<div class="empty">Cannot load history from the server. Tap REFRESH LIVE HISTORY to retry.</div>';
+    const recent=document.getElementById("recentDemoResults");
+    if(recent)recent.innerHTML='<div class="empty">History sync unavailable. Tap REFRESH LIVE HISTORY.</div>';
   }
 }
 
@@ -2634,6 +2658,12 @@ document
   );
 
 
+
+document.getElementById("refreshHistoryBtn").onclick=()=>refreshEverything();
+document.getElementById("openFullHistoryBtn").onclick=()=>{
+  document.querySelector('.nav[data-screen="historyScreen"]')?.click();
+  refreshEverything();
+};
 
 /* =================================
    BUTTON EVENTS
